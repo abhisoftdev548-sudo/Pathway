@@ -68,18 +68,18 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               role="status"
             >
               <span className="mt-0.5">
-                {t.kind === 'success' && <CheckCircle2 className="h-5 w-5 text-emerald-600" />}
-                {t.kind === 'error' && <AlertCircle className="h-5 w-5 text-red-600" />}
+                {t.kind === 'success' && <CheckCircle2 className="h-5 w-5 text-success" />}
+                {t.kind === 'error' && <AlertCircle className="h-5 w-5 text-danger" />}
                 {t.kind === 'info' && <Info className="h-5 w-5 text-brand-600" />}
               </span>
               <div className="flex-1">
-                <p className="text-sm font-medium text-zinc-900">{t.title}</p>
-                {t.description && <p className="mt-0.5 text-xs text-zinc-500">{t.description}</p>}
+                <p className="text-sm font-medium text-heading">{t.title}</p>
+                {t.description && <p className="mt-0.5 text-xs text-body">{t.description}</p>}
               </div>
               <button
                 type="button"
                 onClick={() => dismiss(t.id)}
-                className="rounded p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600"
+                className="rounded p-1 text-muted hover:bg-surface-muted hover:text-body"
                 aria-label="Dismiss notification"
               >
                 <X className="h-4 w-4" />

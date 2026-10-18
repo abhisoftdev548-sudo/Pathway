@@ -56,13 +56,13 @@ export function LandingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-zinc-100">
+      <section className="relative overflow-hidden border-b border-line">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              'radial-gradient(900px 380px at 85% -10%, rgb(99 102 241 / 0.10), transparent 60%), radial-gradient(700px 340px at 0% 110%, rgb(139 92 246 / 0.07), transparent 55%)',
+              'radial-gradient(900px 380px at 85% -10%, rgb(105 56 239 / 0.10), transparent 60%), radial-gradient(700px 340px at 0% 110%, rgb(105 56 239 / 0.05), transparent 55%)',
           }}
         />
         <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-24">
@@ -70,11 +70,11 @@ export function LandingPage() {
             <Badge tone="brand" className="mb-5">
               <Sparkles className="h-3 w-3" /> Community knowledge, honestly measured
             </Badge>
-            <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-zinc-900 sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-heading sm:text-5xl lg:text-[3.4rem]">
               Quizzes and polls that
               <span className="text-brand-600"> reward real participation</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-zinc-600">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-body">
               QuizSphere is a community platform where creators publish quizzes and polls, every
               submission is reviewed before it goes live, and participants earn QCoins under clear,
               transparent rules.
@@ -91,7 +91,7 @@ export function LandingPage() {
                 </Button>
               </Link>
             </div>
-            <p className="mt-4 text-sm text-zinc-400">
+            <p className="mt-4 text-sm text-muted">
               Free to join · Internal QCoins only — never cash · Every score is server-verified
             </p>
           </motion.div>
@@ -100,12 +100,12 @@ export function LandingPage() {
 
       {/* Real statistics — omitted entirely when there is nothing meaningful to show */}
       {statEntries.length > 0 && (
-        <section className="border-b border-zinc-100 bg-zinc-50/60">
+        <section className="border-b border-line bg-background/60">
           <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:grid-cols-3 sm:px-6">
             {statEntries.map(([key, value], i) => (
               <motion.div key={key} {...fadeUp(0.05 * i)}>
-                <p className="text-3xl font-semibold tracking-tight text-zinc-900">{formatNumber(value as number)}</p>
-                <p className="mt-1 text-sm text-zinc-500">{STAT_LABELS[key] ?? key}</p>
+                <p className="text-3xl font-semibold tracking-tight text-heading">{formatNumber(value as number)}</p>
+                <p className="mt-1 text-sm text-body">{STAT_LABELS[key] ?? key}</p>
               </motion.div>
             ))}
           </div>
@@ -115,10 +115,10 @@ export function LandingPage() {
       {/* Features — genuine descriptions of implemented platform functionality */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <motion.div {...fadeUp(0)} className="max-w-2xl">
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-heading sm:text-3xl">
             Everything a community quiz platform needs — done properly
           </h2>
-          <p className="mt-3 text-zinc-600">
+          <p className="mt-3 text-body">
             Not a template: a complete workflow from draft to publication, participation, and reward.
           </p>
         </motion.div>
@@ -130,8 +130,8 @@ export function LandingPage() {
                 <feature.icon className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-base font-semibold text-zinc-900">{feature.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-zinc-600">{feature.description}</p>
+                <h3 className="text-base font-semibold text-heading">{feature.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-body">{feature.description}</p>
               </div>
             </motion.div>
           ))}
@@ -140,12 +140,12 @@ export function LandingPage() {
 
       {/* Quiz previews — only when real published quizzes exist */}
       {quizzes.length > 0 && (
-        <section className="border-y border-zinc-100 bg-zinc-50/60">
+        <section className="border-y border-line bg-background/60">
           <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">Fresh quizzes</h2>
-                <p className="mt-1 text-sm text-zinc-500">Recently published and reviewed by moderators.</p>
+                <h2 className="text-2xl font-semibold tracking-tight text-heading">Fresh quizzes</h2>
+                <p className="mt-1 text-sm text-body">Recently published and reviewed by moderators.</p>
               </div>
               <Link to="/explore/quizzes" className="text-sm font-medium text-brand-600 hover:text-brand-700">
                 Browse all quizzes →
@@ -166,8 +166,8 @@ export function LandingPage() {
           <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">Open polls</h2>
-                <p className="mt-1 text-sm text-zinc-500">Share your opinion before voting closes.</p>
+                <h2 className="text-2xl font-semibold tracking-tight text-heading">Open polls</h2>
+                <p className="mt-1 text-sm text-body">Share your opinion before voting closes.</p>
               </div>
               <Link to="/explore/polls" className="text-sm font-medium text-brand-600 hover:text-brand-700">
                 Browse all polls →
@@ -183,7 +183,7 @@ export function LandingPage() {
       )}
 
       {/* QCoin economy explainer */}
-      <section className="border-t border-zinc-100 bg-zinc-900">
+      <section className="border-t border-line bg-heading">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
           <motion.div {...fadeUp(0)}>
             <Badge tone="warning" className="mb-4">
@@ -192,15 +192,15 @@ export function LandingPage() {
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               Incentives without hidden rules
             </h2>
-            <p className="mt-4 leading-relaxed text-zinc-300">
+            <p className="mt-4 leading-relaxed text-muted">
               QCoins are internal platform credits. Creators decide per quiz or poll whether to charge
               an entry fee, offer a reward, do both, or do neither — and every credit and debit is
               written to an immutable ledger you can audit.
             </p>
             <ul className="mt-6 space-y-3">
               {ECONOMY_POINTS.map((point) => (
-                <li key={point} className="flex items-start gap-2.5 text-sm text-zinc-300">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                <li key={point} className="flex items-start gap-2.5 text-sm text-muted">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   {point}
                 </li>
               ))}
@@ -208,9 +208,9 @@ export function LandingPage() {
           </motion.div>
           <motion.div {...fadeUp(0.1)} className="grid gap-4">
             {ECONOMY_MODES.map((mode) => (
-              <div key={mode.title} className="rounded-xl border border-zinc-700/80 bg-zinc-800/70 p-5">
+              <div key={mode.title} className="rounded-xl border border-white/10 bg-white/5 p-5">
                 <p className="text-sm font-semibold text-white">{mode.title}</p>
-                <p className="mt-1 text-sm text-zinc-400">{mode.description}</p>
+                <p className="mt-1 text-sm text-muted">{mode.description}</p>
               </div>
             ))}
           </motion.div>
@@ -219,10 +219,10 @@ export function LandingPage() {
 
       {/* Final CTA */}
       <section className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
-        <motion.h2 {...fadeUp(0)} className="text-3xl font-semibold tracking-tight text-zinc-900">
+        <motion.h2 {...fadeUp(0)} className="text-3xl font-semibold tracking-tight text-heading">
           Ready to build something people actually take?
         </motion.h2>
-        <motion.p {...fadeUp(0.06)} className="mx-auto mt-4 max-w-xl text-zinc-600">
+        <motion.p {...fadeUp(0.06)} className="mx-auto mt-4 max-w-xl text-body">
           Create an account, publish your first quiz or poll, and watch real participation roll in —
           with honest data at every step.
         </motion.p>
@@ -261,35 +261,35 @@ const FEATURES = [
     title: 'Moderation before publication',
     description:
       'Every quiz and poll is reviewed by moderators before it reaches participants. Creators get clear feedback and can resubmit revisions.',
-    tone: 'bg-emerald-50 text-emerald-600',
+    tone: 'bg-success-soft text-success',
   },
   {
     icon: Vote,
     title: 'Opinion polls done right',
     description:
       'Single or multiple voting, deadlines enforced on the server, optional anonymity, and results visibility you control. Poll rewards never pretend opinions have a right answer.',
-    tone: 'bg-sky-50 text-sky-600',
+    tone: 'bg-info-soft text-info',
   },
   {
     icon: Coins,
     title: 'Transparent QCoin wallet',
     description:
       'Optional entry fees and rewards in four independent configurations, refunds with defined rules, and an immutable transaction ledger for every movement.',
-    tone: 'bg-amber-50 text-amber-600',
+    tone: 'bg-warning-soft text-warning',
   },
   {
     icon: Trophy,
     title: 'Earned rankings',
     description:
       'Performance, consistency, and creator leaderboards computed from server-verified attempts and eligible ratings — never from wallet balances or fabricated entries.',
-    tone: 'bg-violet-50 text-violet-600',
+    tone: 'bg-brand-50 text-brand-600',
   },
   {
     icon: LineChart,
     title: 'Creator analytics',
     description:
       'Real attempt counts, score distributions, pass rates, and community feedback on your published content — with loading, empty, and error states handled honestly.',
-    tone: 'bg-rose-50 text-rose-600',
+    tone: 'bg-danger-soft text-danger',
   },
 ];
 
@@ -314,7 +314,7 @@ function QuizPreviewCard({ quiz }: { quiz: QuizSummary }) {
       className="surface group p-5 transition-shadow hover:shadow-pop"
     >
       <div className="flex items-start justify-between gap-3">
-        <h3 className="text-base font-semibold text-zinc-900 group-hover:text-brand-700">{quiz.title}</h3>
+        <h3 className="text-base font-semibold text-heading group-hover:text-brand-700">{quiz.title}</h3>
         {quiz.difficulty && (
           <Badge tone={quiz.difficulty === 'HARD' ? 'danger' : quiz.difficulty === 'EASY' ? 'success' : 'info'}>
             {quiz.difficulty.toLowerCase()}
@@ -322,9 +322,9 @@ function QuizPreviewCard({ quiz }: { quiz: QuizSummary }) {
         )}
       </div>
       {quiz.description && (
-        <p className="mt-2 line-clamp-2 text-sm text-zinc-500">{quiz.description}</p>
+        <p className="mt-2 line-clamp-2 text-sm text-body">{quiz.description}</p>
       )}
-      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-zinc-400">
+      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
         {quiz.creator?.name && <span>by {quiz.creator.name}</span>}
         {(quiz.stats?.ratingCount ?? 0) > 0 && (
           <RatingStars value={quiz.stats?.ratingBayes ?? 0} count={quiz.stats?.ratingCount} />
@@ -338,11 +338,11 @@ function PollPreviewCard({ poll }: { poll: PollSummary }) {
   return (
     <Link to={`/polls/${poll.slug}`} className="surface group flex items-center justify-between gap-4 p-5 transition-shadow hover:shadow-pop">
       <div>
-        <h3 className="text-base font-semibold text-zinc-900 group-hover:text-brand-700">{poll.title}</h3>
-        {poll.question && <p className="mt-1 line-clamp-1 text-sm text-zinc-500">{poll.question}</p>}
-        <p className="mt-2 text-xs text-zinc-400">{timeUntil(poll.endsAt)}</p>
+        <h3 className="text-base font-semibold text-heading group-hover:text-brand-700">{poll.title}</h3>
+        {poll.question && <p className="mt-1 line-clamp-1 text-sm text-body">{poll.question}</p>}
+        <p className="mt-2 text-xs text-muted">{timeUntil(poll.endsAt)}</p>
       </div>
-      <Vote className="h-5 w-5 shrink-0 text-zinc-300" />
+      <Vote className="h-5 w-5 shrink-0 text-muted" />
     </Link>
   );
 }

@@ -57,13 +57,13 @@ export function AdminUserManagementPage() {
         ]}
         head={['User', 'Status', 'Role', 'Joined', 'Actions']}
         renderRow={(user) => (
-          <tr key={user._id} className="hover:bg-zinc-50/70">
+          <tr key={user._id} className="hover:bg-surface-muted/70">
             <Td>
               <div className="flex items-center gap-3">
                 <Avatar name={user.name} src={user.avatar?.url} size="sm" />
                 <div>
-                  <p className="font-medium text-zinc-900">{user.name}</p>
-                  <p className="text-xs text-zinc-400">{user.email}</p>
+                  <p className="font-medium text-heading">{user.name}</p>
+                  <p className="text-xs text-muted">{user.email}</p>
                 </div>
               </div>
             </Td>
@@ -73,7 +73,7 @@ export function AdminUserManagementPage() {
             <Td>
               <Badge tone={user.role === 'ADMIN' ? 'brand' : 'neutral'}>{user.role}</Badge>
             </Td>
-            <Td className="text-zinc-500">{formatDate(user.createdAt)}</Td>
+            <Td className="text-body">{formatDate(user.createdAt)}</Td>
             <Td>
               <div className="flex flex-wrap gap-1.5">
                 <Button
@@ -162,7 +162,7 @@ export function AdminUserManagementPage() {
                   onChange={(e) => setAmount(e.target.value)}
                   placeholder="e.g. 50 or -25"
                 />
-                <p className="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                <p className="rounded-lg bg-warning-soft px-3 py-2 text-xs text-warning">
                   Adjustments never edit history — they append a new ledger entry with your reason.
                 </p>
               </>

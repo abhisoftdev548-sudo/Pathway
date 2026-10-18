@@ -36,10 +36,10 @@ export function CardHeader({
   className?: string;
 }) {
   return (
-    <div className={cn('flex flex-wrap items-start justify-between gap-3 border-b border-gray-200 px-5 py-4', className)}>
+    <div className={cn('flex flex-wrap items-start justify-between gap-3 border-b border-line px-5 py-4', className)}>
       <div>
-        <h3 className="text-base font-semibold text-zinc-900">{title}</h3>
-        {subtitle && <p className="mt-0.5 text-sm text-zinc-500">{subtitle}</p>}
+        <h3 className="text-base font-semibold text-heading">{title}</h3>
+        {subtitle && <p className="mt-0.5 text-sm text-body">{subtitle}</p>}
       </div>
       {actions && <div className="flex items-center gap-2">{actions}</div>}
     </div>
@@ -65,8 +65,8 @@ export function PageHeader({
   return (
     <div className={cn('mb-6 flex flex-wrap items-end justify-between gap-4', className)}>
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">{title}</h1>
-        {description && <p className="mt-1 max-w-2xl text-sm text-zinc-500">{description}</p>}
+        <h1 className="text-2xl font-semibold tracking-tight text-heading">{title}</h1>
+        {description && <p className="mt-1 max-w-2xl text-sm text-body">{description}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
     </div>
@@ -88,11 +88,11 @@ export function EmptyState({
 }) {
   return (
     <div className={cn('flex flex-col items-center justify-center px-6 py-12 text-center', className)}>
-      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-100 text-zinc-400">
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface-muted text-muted">
         {icon ?? <Inbox className="h-6 w-6" />}
       </div>
-      <h3 className="text-sm font-semibold text-zinc-900">{title}</h3>
-      {description && <p className="mt-1 max-w-sm text-sm text-zinc-500">{description}</p>}
+      <h3 className="text-sm font-semibold text-heading">{title}</h3>
+      {description && <p className="mt-1 max-w-sm text-sm text-body">{description}</p>}
       {action && <div className="mt-4">{action}</div>}
     </div>
   );
@@ -114,11 +114,11 @@ export function ErrorState({
       className={cn('flex flex-col items-center justify-center px-6 py-12 text-center', className)}
       role="alert"
     >
-      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-red-500">
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-danger-soft text-danger">
         <AlertTriangle className="h-6 w-6" />
       </div>
-      <h3 className="text-sm font-semibold text-zinc-900">{title}</h3>
-      {description && <p className="mt-1 max-w-md text-sm text-zinc-500">{description}</p>}
+      <h3 className="text-sm font-semibold text-heading">{title}</h3>
+      {description && <p className="mt-1 max-w-md text-sm text-body">{description}</p>}
       {action && <div className="mt-4">{action}</div>}
     </div>
   );
@@ -127,11 +127,11 @@ export function ErrorState({
 export function ForbiddenState({ description }: { description?: string }) {
   return (
     <div className="flex flex-col items-center justify-center px-6 py-12 text-center">
-      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-100 text-zinc-500">
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface-muted text-body">
         <Lock className="h-6 w-6" />
       </div>
-      <h3 className="text-sm font-semibold text-zinc-900">Not available</h3>
-      <p className="mt-1 max-w-sm text-sm text-zinc-500">
+      <h3 className="text-sm font-semibold text-heading">Not available</h3>
+      <p className="mt-1 max-w-sm text-sm text-body">
         {description ?? 'You do not have access to this content.'}
       </p>
     </div>
@@ -178,10 +178,10 @@ export function SkeletonList({ count = 3 }: { count?: number }) {
 export function SkeletonTable({ rows = 5, cols = 4 }: { rows?: number; cols?: number }) {
   return (
     <div className="surface overflow-hidden">
-      <div className="border-b border-zinc-100 px-5 py-3">
+      <div className="border-b border-line px-5 py-3">
         <Skeleton className="h-4 w-1/4" />
       </div>
-      <div className="divide-y divide-zinc-100">
+      <div className="divide-y divide-line">
         {Array.from({ length: rows }).map((_, r) => (
           <div key={r} className="grid gap-4 px-5 py-3.5" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
             {Array.from({ length: cols }).map((__, c) => (
@@ -196,7 +196,7 @@ export function SkeletonTable({ rows = 5, cols = 4 }: { rows?: number; cols?: nu
 
 export function InlineSpinner({ label }: { label?: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 py-8 text-sm text-zinc-500">
+    <div className="flex items-center justify-center gap-2 py-8 text-sm text-body">
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 0.9, ease: 'linear' }}

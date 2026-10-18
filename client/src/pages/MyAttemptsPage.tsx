@@ -70,23 +70,23 @@ export function MyAttemptsPage() {
         <div className="surface overflow-hidden">
           <Table head={['Quiz', 'Submitted', 'Score', 'Time', 'Result']}>
             {items.map((attempt) => (
-              <tr key={attempt._id} className="hover:bg-zinc-50/70">
+              <tr key={attempt._id} className="hover:bg-surface-muted/70">
                 <Td>
-                  <Link to={`/attempts/${attempt._id}`} className="font-medium text-zinc-900 hover:text-brand-700">
+                  <Link to={`/attempts/${attempt._id}`} className="font-medium text-heading hover:text-brand-700">
                     {attempt.quiz?.title ?? 'Quiz'}
                   </Link>
                   {attempt.versionNumber ? (
-                    <p className="text-xs text-zinc-400">version {attempt.versionNumber}</p>
+                    <p className="text-xs text-muted">version {attempt.versionNumber}</p>
                   ) : null}
                 </Td>
-                <Td className="text-zinc-500">{formatDate(attempt.submittedAt)}</Td>
+                <Td className="text-body">{formatDate(attempt.submittedAt)}</Td>
                 <Td>
-                  <span className="font-medium text-zinc-900">{formatPercent(attempt.percentage ?? 0, 1)}</span>
-                  <span className="ml-1 text-xs text-zinc-400">
+                  <span className="font-medium text-heading">{formatPercent(attempt.percentage ?? 0, 1)}</span>
+                  <span className="ml-1 text-xs text-muted">
                     ({attempt.score ?? 0}/{attempt.maxScore ?? 0})
                   </span>
                 </Td>
-                <Td className="text-zinc-500">{formatDuration(attempt.timeSpentSec ?? 0)}</Td>
+                <Td className="text-body">{formatDuration(attempt.timeSpentSec ?? 0)}</Td>
                 <Td>
                   {attempt.needsReview ? (
                     <Badge tone="warning">In review</Badge>

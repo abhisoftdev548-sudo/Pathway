@@ -145,11 +145,11 @@ export function PollDetailPage() {
               }
             />
             <CardBody>
-              {poll.description && <p className="mb-4 text-sm text-zinc-600">{poll.description}</p>}
+              {poll.description && <p className="mb-4 text-sm text-body">{poll.description}</p>}
 
               {!user && (
-                <div className="mb-4 flex items-center gap-2 rounded-lg bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
-                  <Lock className="h-4 w-4 text-zinc-400" />
+                <div className="mb-4 flex items-center gap-2 rounded-lg bg-background px-4 py-3 text-sm text-body">
+                  <Lock className="h-4 w-4 text-muted" />
                   <Link to={`/login?from=/polls/${poll.slug}`} className="font-medium text-brand-600 hover:text-brand-700">
                     Sign in
                   </Link>
@@ -158,14 +158,14 @@ export function PollDetailPage() {
               )}
 
               {hasVoted ? (
-                <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+                <div className="rounded-lg border border-success-soft bg-success-soft px-4 py-3 text-sm text-success">
                   Your vote{myVote && myVote.optionIds.length > 1 ? 's were' : ' was'} recorded on{' '}
                   {formatDate(myVote?.votedAt ?? poll.endsAt)}. Thanks for participating!
                 </div>
               ) : canVote ? (
                 <>
                   {(poll.entryFee ?? 0) > 0 && (
-                    <div className="mb-4 flex items-center gap-2 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                    <div className="mb-4 flex items-center gap-2 rounded-lg bg-warning-soft px-4 py-3 text-sm text-warning">
                       <Coins className="h-4 w-4" />
                       Voting costs <strong>{formatNumber(poll.entryFee)} QCoins</strong>
                       {(poll.reward ?? 0) > 0 && (
@@ -193,14 +193,14 @@ export function PollDetailPage() {
                             'flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm transition-colors',
                             selected
                               ? 'border-brand-500 bg-brand-50 text-brand-800'
-                              : 'border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300'
+                              : 'border-line bg-white text-body hover:border-line-strong'
                           )}
                         >
                           <span
                             className={cn(
                               'flex h-4 w-4 shrink-0 items-center justify-center border',
                               singleChoice ? 'rounded-full' : 'rounded',
-                              selected ? 'border-brand-600 bg-brand-600' : 'border-zinc-300'
+                              selected ? 'border-brand-600 bg-brand-600' : 'border-line-strong'
                             )}
                           >
                             {selected && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
@@ -218,14 +218,14 @@ export function PollDetailPage() {
                     >
                       Submit vote
                     </Button>
-                    <p className="text-xs text-zinc-400">
+                    <p className="text-xs text-muted">
                       {singleChoice ? 'Choose one option.' : 'Choose one or more options.'} Voting is final.
                     </p>
                   </div>
                 </>
               ) : isClosed ? (
                 results ? (
-                  <p className="text-sm text-zinc-500">This poll has ended. Final results are shown below.</p>
+                  <p className="text-sm text-body">This poll has ended. Final results are shown below.</p>
                 ) : (
                   <EmptyState title="Results not visible" description="The creator has chosen not to publish results publicly." />
                 )
@@ -239,7 +239,7 @@ export function PollDetailPage() {
               <CardHeader
                 title="Results"
                 subtitle={`${formatNumber(voterCount)} voter${voterCount === 1 ? '' : 's'} · ${formatNumber(results.totalSelections)} selections`}
-                actions={<BarChart3 className="h-5 w-5 text-zinc-300" />}
+                actions={<BarChart3 className="h-5 w-5 text-muted" />}
               />
               <CardBody>
                 {chartData.length === 0 || results.totalSelections === 0 ? (
@@ -273,9 +273,9 @@ export function PollDetailPage() {
                               className="h-2.5 w-2.5 shrink-0 rounded-full"
                               style={{ background: CHART_COLORS[i % CHART_COLORS.length] }}
                             />
-                            <span className="flex-1 truncate text-zinc-700">{opt.text}</span>
-                            <span className="text-zinc-500">{formatNumber(votes)}</span>
-                            <span className="w-12 text-right font-medium text-zinc-900">{formatPercent(pct, 1)}</span>
+                            <span className="flex-1 truncate text-body">{opt.text}</span>
+                            <span className="text-body">{formatNumber(votes)}</span>
+                            <span className="w-12 text-right font-medium text-heading">{formatPercent(pct, 1)}</span>
                           </div>
                         );
                       })}
@@ -312,33 +312,33 @@ export function PollDetailPage() {
             <CardBody>
               <dl className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Voting type</dt>
-                  <dd className="font-medium text-zinc-900">{singleChoice ? 'Single choice' : 'Multiple choice'}</dd>
+                  <dt className="text-body">Voting type</dt>
+                  <dd className="font-medium text-heading">{singleChoice ? 'Single choice' : 'Multiple choice'}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Voters</dt>
-                  <dd className="font-medium text-zinc-900 inline-flex items-center gap-1">
+                  <dt className="text-body">Voters</dt>
+                  <dd className="font-medium text-heading inline-flex items-center gap-1">
                     <Users className="h-3.5 w-3.5" /> {formatNumber(voterCount)}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Ends</dt>
-                  <dd className="font-medium text-zinc-900">{formatDate(poll.endsAt)}</dd>
+                  <dt className="text-body">Ends</dt>
+                  <dd className="font-medium text-heading">{formatDate(poll.endsAt)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Anonymity</dt>
-                  <dd className="font-medium text-zinc-900">{poll.anonymous ? 'Anonymous' : 'Public voters'}</dd>
+                  <dt className="text-body">Anonymity</dt>
+                  <dd className="font-medium text-heading">{poll.anonymous ? 'Anonymous' : 'Public voters'}</dd>
                 </div>
                 {(poll.entryFee ?? 0) > 0 && (
                   <div className="flex justify-between">
-                    <dt className="text-zinc-500">Entry fee</dt>
-                    <dd className="font-medium text-amber-600">{formatNumber(poll.entryFee)} QCoins</dd>
+                    <dt className="text-body">Entry fee</dt>
+                    <dd className="font-medium text-warning">{formatNumber(poll.entryFee)} QCoins</dd>
                   </div>
                 )}
                 {(poll.reward ?? 0) > 0 && (
                   <div className="flex justify-between">
-                    <dt className="text-zinc-500">Reward</dt>
-                    <dd className="font-medium text-emerald-600">{formatNumber(poll.reward)} QCoins</dd>
+                    <dt className="text-body">Reward</dt>
+                    <dd className="font-medium text-success">{formatNumber(poll.reward)} QCoins</dd>
                   </div>
                 )}
               </dl>
@@ -353,8 +353,8 @@ export function PollDetailPage() {
                   {(poll.creator?.name ?? '?').slice(0, 2).toUpperCase()}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-zinc-900">{poll.creator?.name}</p>
-                  <p className="text-xs text-zinc-500">View creator profile</p>
+                  <p className="text-sm font-semibold text-heading">{poll.creator?.name}</p>
+                  <p className="text-xs text-body">View creator profile</p>
                 </div>
               </Link>
             </CardBody>

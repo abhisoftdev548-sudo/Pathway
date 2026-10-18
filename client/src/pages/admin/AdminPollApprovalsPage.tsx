@@ -58,35 +58,35 @@ export function AdminPollApprovalsPage() {
                   actions={<Badge tone={statusTone(poll.status)}>{poll.status ? STATUS_LABELS[poll.status] : ''}</Badge>}
                 />
                 <CardBody>
-                  <p className="text-sm font-medium text-zinc-800">{poll.question}</p>
-                  {poll.description && <p className="mt-1 text-sm text-zinc-500">{poll.description}</p>}
+                  <p className="text-sm font-medium text-heading">{poll.question}</p>
+                  {poll.description && <p className="mt-1 text-sm text-body">{poll.description}</p>}
 
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {(poll.options ?? []).map((option) => (
-                      <span key={option.id} className="rounded-md bg-zinc-100 px-2 py-1 text-xs text-zinc-600">
+                      <span key={option.id} className="rounded-md bg-surface-muted px-2 py-1 text-xs text-body">
                         {option.text}
                       </span>
                     ))}
                   </div>
 
-                  <dl className="mt-3 grid grid-cols-2 gap-3 text-xs text-zinc-500 sm:grid-cols-4">
+                  <dl className="mt-3 grid grid-cols-2 gap-3 text-xs text-body sm:grid-cols-4">
                     <div>
                       <dt>Voting</dt>
-                      <dd className="font-medium text-zinc-800">
+                      <dd className="font-medium text-heading">
                         {poll.votingType === 'MULTIPLE' ? 'Multiple choice' : 'Single choice'}
                       </dd>
                     </div>
                     <div>
                       <dt>Ends</dt>
-                      <dd className="font-medium text-zinc-800">{formatDate(poll.endsAt)}</dd>
+                      <dd className="font-medium text-heading">{formatDate(poll.endsAt)}</dd>
                     </div>
                     <div>
                       <dt>Entry fee</dt>
-                      <dd className="font-medium text-zinc-800">{formatNumber(poll.entryFee ?? 0)} QCoins</dd>
+                      <dd className="font-medium text-heading">{formatNumber(poll.entryFee ?? 0)} QCoins</dd>
                     </div>
                     <div>
                       <dt>Reward</dt>
-                      <dd className="font-medium text-zinc-800">
+                      <dd className="font-medium text-heading">
                         {formatNumber(poll.reward ?? 0)} QCoins ({(poll.rewardMode ?? 'ALL_PARTICIPANTS').toLowerCase().replace('_', ' ')})
                       </dd>
                     </div>

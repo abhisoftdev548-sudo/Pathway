@@ -146,7 +146,7 @@ export function QuizDetailPage() {
                 )}
                 {quiz.category?.name && <Badge>{quiz.category.name}</Badge>}
                 {(quiz.tags ?? []).map((tag) => (
-                  <span key={tag} className="rounded-md bg-zinc-100 px-1.5 py-0.5 text-[11px] text-zinc-500">
+                  <span key={tag} className="rounded-md bg-surface-muted px-1.5 py-0.5 text-[11px] text-body">
                     {tag}
                   </span>
                 ))}
@@ -160,11 +160,11 @@ export function QuizDetailPage() {
               </dl>
 
               {(quiz.stats?.completionsCount ?? 0) > 0 && (
-                <div className="mt-5 rounded-lg bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
-                  <span className="font-medium text-zinc-900">{formatNumber(quiz.stats?.completionsCount)}</span> completed
+                <div className="mt-5 rounded-lg bg-background px-4 py-3 text-sm text-body">
+                  <span className="font-medium text-heading">{formatNumber(quiz.stats?.completionsCount)}</span> completed
                   this quiz · average score{' '}
-                  <span className="font-medium text-zinc-900">{formatPercent(quiz.stats?.avgScore ?? 0)}</span> ·{' '}
-                  <span className="font-medium text-zinc-900">{formatNumber(quiz.stats?.passesCount ?? 0)}</span> passed
+                  <span className="font-medium text-heading">{formatPercent(quiz.stats?.avgScore ?? 0)}</span> ·{' '}
+                  <span className="font-medium text-heading">{formatNumber(quiz.stats?.passesCount ?? 0)}</span> passed
                 </div>
               )}
             </CardBody>
@@ -176,27 +176,27 @@ export function QuizDetailPage() {
               <CardHeader title="Participation terms" subtitle="Exactly what you pay and what you can earn." />
               <CardBody>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-lg border border-zinc-100 p-4">
-                    <p className="flex items-center gap-2 text-sm font-medium text-zinc-900">
-                      <Coins className="h-4 w-4 text-amber-500" /> Entry fee
+                  <div className="rounded-lg border border-line p-4">
+                    <p className="flex items-center gap-2 text-sm font-medium text-heading">
+                      <Coins className="h-4 w-4 text-warning" /> Entry fee
                     </p>
-                    <p className="mt-1 text-2xl font-semibold text-zinc-900">
+                    <p className="mt-1 text-2xl font-semibold text-heading">
                       {entryFee > 0 ? `${formatNumber(entryFee)} QCoins` : 'Free'}
                     </p>
-                    <p className="mt-1 text-xs text-zinc-500">
+                    <p className="mt-1 text-xs text-body">
                       {entryFee > 0
                         ? 'Deducted when you start. Refundable if the quiz is cancelled by the platform or you abandon before submitting.'
                         : 'No entry fee — participate at no cost.'}
                     </p>
                   </div>
-                  <div className="rounded-lg border border-zinc-100 p-4">
-                    <p className="flex items-center gap-2 text-sm font-medium text-zinc-900">
-                      <Coins className="h-4 w-4 text-emerald-500" /> Reward
+                  <div className="rounded-lg border border-line p-4">
+                    <p className="flex items-center gap-2 text-sm font-medium text-heading">
+                      <Coins className="h-4 w-4 text-success" /> Reward
                     </p>
-                    <p className="mt-1 text-2xl font-semibold text-zinc-900">
+                    <p className="mt-1 text-2xl font-semibold text-heading">
                       {reward > 0 ? `${formatNumber(reward)} QCoins` : 'No reward'}
                     </p>
-                    <p className="mt-1 text-xs text-zinc-500">
+                    <p className="mt-1 text-xs text-body">
                       {reward > 0
                         ? (quiz as unknown as { rewardMode?: string }).rewardMode === 'TOP_PERCENT'
                           ? `Paid to top-performing passes (top ${((quiz as unknown as { topPercent?: number }).topPercent ?? 20)}%).`
@@ -218,15 +218,15 @@ export function QuizDetailPage() {
                   <Link
                     key={attempt._id}
                     to={`/attempts/${attempt._id}`}
-                    className="flex items-center justify-between rounded-lg border border-zinc-100 px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
+                    className="flex items-center justify-between rounded-lg border border-line px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
                   >
                     <div className="flex items-center gap-3 text-sm">
                       <Badge tone={attempt.passed ? 'success' : 'neutral'}>
                         {attempt.passed ? 'Passed' : 'Not passed'}
                       </Badge>
-                      <span className="text-zinc-500">{formatDate(attempt.submittedAt)}</span>
+                      <span className="text-body">{formatDate(attempt.submittedAt)}</span>
                     </div>
-                    <span className="text-sm font-semibold text-zinc-900">{formatPercent(attempt.percentage)}</span>
+                    <span className="text-sm font-semibold text-heading">{formatPercent(attempt.percentage)}</span>
                   </Link>
                 ))}
               </CardBody>
@@ -243,11 +243,11 @@ export function QuizDetailPage() {
               />
               <CardBody className="space-y-4">
                 {solution.map((q, i) => (
-                  <div key={q.id} className="rounded-lg border border-zinc-100 p-4">
-                    <p className="text-sm font-medium text-zinc-900">
+                  <div key={q.id} className="rounded-lg border border-line p-4">
+                    <p className="text-sm font-medium text-heading">
                       {i + 1}. {q.text}
                     </p>
-                    <p className="mt-1 text-xs text-zinc-500">
+                    <p className="mt-1 text-xs text-body">
                       Correct:{' '}
                       {q.type === 'TRUE_FALSE'
                         ? String(q.correctBoolean)
@@ -260,7 +260,7 @@ export function QuizDetailPage() {
                                 .map((o) => o.text)
                                 .join(', ')}
                     </p>
-                    {q.explanation && <p className="mt-1.5 text-xs text-zinc-600">{q.explanation}</p>}
+                    {q.explanation && <p className="mt-1.5 text-xs text-body">{q.explanation}</p>}
                   </div>
                 ))}
               </CardBody>
@@ -293,14 +293,14 @@ export function QuizDetailPage() {
               ) : (
                 <div className="space-y-4">
                   {(ratingsData?.items ?? []).map((rating: RatingDto) => (
-                    <div key={rating._id} className="border-b border-zinc-100 pb-4 last:border-0 last:pb-0">
+                    <div key={rating._id} className="border-b border-line pb-4 last:border-0 last:pb-0">
                       <div className="flex items-center justify-between gap-3">
-                        <Link to={`/users/${rating.user?._id}`} className="text-sm font-medium text-zinc-900 hover:text-brand-700">
+                        <Link to={`/users/${rating.user?._id}`} className="text-sm font-medium text-heading hover:text-brand-700">
                           {rating.user?.name ?? 'Member'}
                         </Link>
                         <RatingStars value={rating.score} />
                       </div>
-                      {rating.review && <p className="mt-1.5 text-sm text-zinc-600">{rating.review}</p>}
+                      {rating.review && <p className="mt-1.5 text-sm text-body">{rating.review}</p>}
                     </div>
                   ))}
                 </div>
@@ -319,8 +319,8 @@ export function QuizDetailPage() {
                   {(quiz.creator?.name ?? '?').slice(0, 2).toUpperCase()}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-zinc-900">{quiz.creator?.name}</p>
-                  <p className="text-xs text-zinc-500">View creator profile</p>
+                  <p className="text-sm font-semibold text-heading">{quiz.creator?.name}</p>
+                  <p className="text-xs text-body">View creator profile</p>
                 </div>
               </Link>
             </CardBody>
@@ -386,11 +386,11 @@ export function QuizDetailPage() {
 function Detail({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div>
-      <dt className="flex items-center gap-1.5 text-xs text-zinc-500">
+      <dt className="flex items-center gap-1.5 text-xs text-body">
         {icon}
         {label}
       </dt>
-      <dd className="mt-1 text-sm font-semibold text-zinc-900">{value}</dd>
+      <dd className="mt-1 text-sm font-semibold text-heading">{value}</dd>
     </div>
   );
 }
@@ -398,8 +398,8 @@ function Detail({ icon, label, value }: { icon: React.ReactNode; label: string; 
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between">
-      <dt className="text-zinc-500">{label}</dt>
-      <dd className="font-medium text-zinc-900">{value}</dd>
+      <dt className="text-body">{label}</dt>
+      <dd className="font-medium text-heading">{value}</dd>
     </div>
   );
 }
@@ -432,11 +432,11 @@ export function RatingWidget({ targetType, targetId }: { targetType: 'QUIZ' | 'P
               type="button"
               onClick={() => setScore(value)}
               aria-label={`${value} star${value > 1 ? 's' : ''}`}
-              className="rounded p-1 hover:bg-zinc-50"
+              className="rounded p-1 hover:bg-surface-muted"
             >
               <Star
                 className={`h-6 w-6 transition-colors ${
-                  value <= score ? 'fill-amber-400 text-amber-400' : 'text-zinc-300'
+                  value <= score ? 'fill-warning text-warning' : 'text-muted'
                 }`}
               />
             </button>
@@ -452,7 +452,7 @@ export function RatingWidget({ targetType, targetId }: { targetType: 'QUIZ' | 'P
         <Button className="w-full" onClick={() => mutation.mutate()} loading={mutation.isPending}>
           Submit rating
         </Button>
-        <p className="text-xs text-zinc-400">
+        <p className="text-xs text-muted">
           Creators cannot rate their own content, and one rating per person is allowed.
         </p>
       </CardBody>

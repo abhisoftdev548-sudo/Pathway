@@ -66,15 +66,15 @@ export function CreatorChangesPage() {
                       <Badge>{kind}</Badge>
                       <Badge tone={statusTone(item.status)}>{item.status ? STATUS_LABELS[item.status] : ''}</Badge>
                     </div>
-                    <h2 className="mt-2 text-base font-semibold text-zinc-900">{item.title}</h2>
+                    <h2 className="mt-2 text-base font-semibold text-heading">{item.title}</h2>
                     {item.moderation?.changesRequestedNote && (
-                      <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
-                        <p className="text-xs font-medium uppercase tracking-wide text-amber-700">Moderator note</p>
+                      <div className="mt-3 rounded-lg border border-warning-soft bg-warning-soft px-4 py-3">
+                        <p className="text-xs font-medium uppercase tracking-wide text-warning">Moderator note</p>
                         <p className="mt-1 text-sm text-amber-900">{item.moderation.changesRequestedNote}</p>
                       </div>
                     )}
                     {item.moderation?.lastNotes && !item.moderation.changesRequestedNote && (
-                      <p className="mt-2 text-sm text-zinc-600">{item.moderation.lastNotes}</p>
+                      <p className="mt-2 text-sm text-body">{item.moderation.lastNotes}</p>
                     )}
                   </div>
                   <Link

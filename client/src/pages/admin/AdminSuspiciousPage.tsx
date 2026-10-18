@@ -57,11 +57,11 @@ export function AdminSuspiciousPage() {
               />
               <Table head={['User', 'Rewards claimed', 'Total rewarded', 'Window']}>
                 {farming.map((row, i) => (
-                  <tr key={i} className="hover:bg-zinc-50/70">
-                    <Td className="text-zinc-700">{row.user?.name ?? 'Unknown'}</Td>
-                    <Td className="font-medium text-zinc-900">{formatNumber(row.rewardCount)}</Td>
+                  <tr key={i} className="hover:bg-surface-muted/70">
+                    <Td className="text-body">{row.user?.name ?? 'Unknown'}</Td>
+                    <Td className="font-medium text-heading">{formatNumber(row.rewardCount)}</Td>
                     <Td>{formatNumber(row.totalRewarded)} QCoins</Td>
-                    <Td className="text-zinc-500">{row.window}</Td>
+                    <Td className="text-body">{row.window}</Td>
                   </tr>
                 ))}
               </Table>
@@ -77,20 +77,20 @@ export function AdminSuspiciousPage() {
               />
               <Table head={['Tx ID', 'User', 'Amount', 'Reason', 'By', 'When']}>
                 {adjustments.map((tx) => (
-                  <tr key={tx.txId} className="hover:bg-zinc-50/70">
+                  <tr key={tx.txId} className="hover:bg-surface-muted/70">
                     <Td>
-                      <span className="font-mono text-xs text-zinc-500">{tx.txId}</span>
+                      <span className="font-mono text-xs text-body">{tx.txId}</span>
                     </Td>
-                    <Td className="text-zinc-700">{tx.user?.name ?? '—'}</Td>
+                    <Td className="text-body">{tx.user?.name ?? '—'}</Td>
                     <Td>
-                      <span className={tx.amount > 0 ? 'font-medium text-emerald-600' : 'font-medium text-red-600'}>
+                      <span className={tx.amount > 0 ? 'font-medium text-success' : 'font-medium text-danger'}>
                         {tx.amount > 0 ? '+' : ''}
                         {formatNumber(tx.amount)}
                       </span>
                     </Td>
-                    <Td className="max-w-[220px] truncate text-zinc-500">{tx.reason || '—'}</Td>
-                    <Td className="text-zinc-500">{tx.performedBy?.name ?? '—'}</Td>
-                    <Td className="text-zinc-500">{formatDate(tx.createdAt)}</Td>
+                    <Td className="max-w-[220px] truncate text-body">{tx.reason || '—'}</Td>
+                    <Td className="text-body">{tx.performedBy?.name ?? '—'}</Td>
+                    <Td className="text-body">{formatDate(tx.createdAt)}</Td>
                   </tr>
                 ))}
               </Table>

@@ -57,7 +57,7 @@ export function HelpPage() {
           <CardHeader title="Need more help?" />
           <CardBody>
             <div className="flex flex-wrap items-center gap-3">
-              <p className="text-sm text-zinc-600">
+              <p className="text-sm text-body">
                 If something looks wrong — a broken quiz, a dispute about rewards, or inappropriate content — report it
                 from the relevant page, or reach out to the platform team.
               </p>
@@ -89,8 +89,8 @@ function Faq({
         {icon}
       </div>
       <div>
-        <p className="text-sm font-semibold text-zinc-900">{question}</p>
-        <p className="mt-1 text-sm leading-relaxed text-zinc-600">{answer}</p>
+        <p className="text-sm font-semibold text-heading">{question}</p>
+        <p className="mt-1 text-sm leading-relaxed text-body">{answer}</p>
       </div>
     </div>
   );

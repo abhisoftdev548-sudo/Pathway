@@ -51,7 +51,7 @@ export function CreatorPendingPage() {
         <div className="space-y-8">
           {quizItems.length > 0 && (
             <section>
-              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-400">Quizzes in review</h2>
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Quizzes in review</h2>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {quizItems.map((quiz: QuizSummary) => (
                   <QuizCard key={quiz._id} quiz={quiz} showStatus />
@@ -61,7 +61,7 @@ export function CreatorPendingPage() {
           )}
           {pollItems.length > 0 && (
             <section>
-              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-400">Polls in review</h2>
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Polls in review</h2>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {pollItems.map((poll: PollSummary) => (
                   <PollCard key={poll._id} poll={poll} showStatus />

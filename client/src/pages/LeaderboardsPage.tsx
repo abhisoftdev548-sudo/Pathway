@@ -76,7 +76,7 @@ export function LeaderboardsPage() {
       ) : (
         <Card>
           <CardBody className="p-0">
-            <ol className="divide-y divide-zinc-100">
+            <ol className="divide-y divide-line">
               {rows.map((row: LeaderboardRow) => {
                 const isMe = user && row.userId === user._id;
                 return (
@@ -91,27 +91,27 @@ export function LeaderboardsPage() {
                       className={cn(
                         'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold',
                         row.rank === 1
-                          ? 'bg-amber-100 text-amber-700'
+                          ? 'bg-amber-100 text-warning'
                           : row.rank === 2
-                            ? 'bg-zinc-200 text-zinc-700'
+                            ? 'bg-line text-body'
                             : row.rank === 3
                               ? 'bg-orange-100 text-orange-700'
-                              : 'bg-zinc-100 text-zinc-500'
+                              : 'bg-surface-muted text-body'
                       )}
                     >
                       {row.rank}
                     </span>
                     <Avatar name={row.name} src={row.avatarUrl} size="sm" />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-zinc-900">
+                      <p className="truncate text-sm font-medium text-heading">
                         {row.name}
                         {isMe && <Badge tone="brand" className="ml-2">You</Badge>}
                       </p>
-                      <p className="text-xs text-zinc-400">{describeRow(board, row)}</p>
+                      <p className="text-xs text-muted">{describeRow(board, row)}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold text-zinc-900">{primaryValue(board, row)}</p>
-                      <p className="text-xs text-zinc-400">{primaryLabel(board)}</p>
+                      <p className="text-sm font-semibold text-heading">{primaryValue(board, row)}</p>
+                      <p className="text-xs text-muted">{primaryLabel(board)}</p>
                     </div>
                   </li>
                 );

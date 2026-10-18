@@ -42,8 +42,8 @@ export function CreatorOverviewPage() {
     <div>
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">Creator studio</h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-heading">Creator studio</h1>
+          <p className="mt-1 text-sm text-body">
             Manage every stage of your content — from draft to published.
           </p>
         </div>
@@ -102,12 +102,12 @@ export function CreatorOverviewPage() {
               <Link
                 key={quiz._id}
                 to={`/creator/quizzes/${quiz._id}/edit`}
-                className="flex items-center justify-between rounded-lg border border-zinc-100 px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
+                className="flex items-center justify-between rounded-lg border border-line px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
               >
                 <div>
-                  <p className="text-sm font-medium text-zinc-900">{quiz.title}</p>
+                  <p className="text-sm font-medium text-heading">{quiz.title}</p>
                   {quiz.moderation?.changesRequestedNote && (
-                    <p className="mt-0.5 line-clamp-1 text-xs text-amber-600">
+                    <p className="mt-0.5 line-clamp-1 text-xs text-warning">
                       {quiz.moderation.changesRequestedNote}
                     </p>
                   )}
@@ -140,22 +140,22 @@ export function CreatorOverviewPage() {
               <Link
                 key={quiz._id}
                 to={`/quizzes/${quiz.slug}`}
-                className="flex items-center justify-between rounded-lg border border-zinc-100 px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
+                className="flex items-center justify-between rounded-lg border border-line px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
               >
                 <div>
-                  <p className="text-sm font-medium text-zinc-900">{quiz.title}</p>
-                  <p className="mt-0.5 text-xs text-zinc-400">
+                  <p className="text-sm font-medium text-heading">{quiz.title}</p>
+                  <p className="mt-0.5 text-xs text-muted">
                     {formatNumber(quiz.stats?.attemptsCount ?? 0)} attempts · published {formatDate(quiz.publishedAt)}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   {(quiz.stats?.ratingCount ?? 0) > 0 && (
-                    <span className="inline-flex items-center gap-1 text-xs text-zinc-500">
-                      <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                    <span className="inline-flex items-center gap-1 text-xs text-body">
+                      <Star className="h-3.5 w-3.5 fill-warning text-warning" />
                       {(quiz.stats?.ratingBayes ?? 0).toFixed(1)}
                     </span>
                   )}
-                  <span className="text-sm font-semibold text-zinc-900">
+                  <span className="text-sm font-semibold text-heading">
                     {formatPercent(quiz.stats?.avgScore ?? 0)}
                   </span>
                 </div>

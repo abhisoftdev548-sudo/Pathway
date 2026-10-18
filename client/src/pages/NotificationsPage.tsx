@@ -92,7 +92,7 @@ export function NotificationsPage() {
         />
       ) : (
         <>
-          <div className="surface divide-y divide-zinc-100 overflow-hidden">
+          <div className="surface divide-y divide-line overflow-hidden">
             {items.map((notification) => (
               <div
                 key={notification._id}
@@ -104,18 +104,18 @@ export function NotificationsPage() {
                 <div
                   className={cn(
                     'mt-1 h-2 w-2 shrink-0 rounded-full',
-                    notification.readAt ? 'bg-zinc-200' : 'bg-brand-500'
+                    notification.readAt ? 'bg-line' : 'bg-brand-500'
                   )}
                   aria-hidden
                 />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between gap-3">
-                    <p className={cn('text-sm', notification.readAt ? 'text-zinc-700' : 'font-medium text-zinc-900')}>
+                    <p className={cn('text-sm', notification.readAt ? 'text-body' : 'font-medium text-heading')}>
                       {notification.title}
                     </p>
-                    <span className="shrink-0 text-xs text-zinc-400">{formatRelative(notification.createdAt)}</span>
+                    <span className="shrink-0 text-xs text-muted">{formatRelative(notification.createdAt)}</span>
                   </div>
-                  {notification.body && <p className="mt-1 text-sm text-zinc-500">{notification.body}</p>}
+                  {notification.body && <p className="mt-1 text-sm text-body">{notification.body}</p>}
                   <div className="mt-2 flex items-center gap-3">
                     {notification.link && (
                       <Link to={notification.link} className="text-xs font-medium text-brand-600 hover:text-brand-700">
@@ -126,7 +126,7 @@ export function NotificationsPage() {
                       <button
                         type="button"
                         onClick={() => markRead.mutate(notification._id)}
-                        className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-800"
+                        className="inline-flex items-center gap-1 text-xs text-body hover:text-heading"
                       >
                         <CheckCircle2 className="h-3.5 w-3.5" /> Mark read
                       </button>

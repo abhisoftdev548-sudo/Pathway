@@ -82,9 +82,9 @@ export function AdminDiagnosticsPage() {
               {Object.entries(data.collections)
                 .sort(([a], [b]) => a.localeCompare(b))
                 .map(([name, count]) => (
-                  <tr key={name} className="hover:bg-zinc-50/70">
-                    <Td className="font-mono text-xs text-zinc-700">{name}</Td>
-                    <Td>{count === null ? <span className="text-zinc-400">unavailable</span> : formatNumber(count)}</Td>
+                  <tr key={name} className="hover:bg-surface-muted/70">
+                    <Td className="font-mono text-xs text-body">{name}</Td>
+                    <Td>{count === null ? <span className="text-muted">unavailable</span> : formatNumber(count)}</Td>
                   </tr>
                 ))}
             </Table>

@@ -348,8 +348,8 @@ export function AppRoutes() {
         path="*"
         element={
           <div className="mx-auto max-w-2xl py-24 text-center">
-            <h1 className="text-2xl font-semibold text-zinc-900">Page not found</h1>
-            <p className="mt-2 text-zinc-500">The page you are looking for does not exist.</p>
+            <h1 className="text-2xl font-semibold text-heading">Page not found</h1>
+            <p className="mt-2 text-body">The page you are looking for does not exist.</p>
             <a href="/" className="mt-6 inline-block text-brand-600 hover:text-brand-700">
               Return home
             </a>

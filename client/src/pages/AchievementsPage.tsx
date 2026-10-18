@@ -52,19 +52,19 @@ export function AchievementsPage() {
               <div
                 className={cn(
                   'flex h-11 w-11 shrink-0 items-center justify-center rounded-full',
-                  achievement.earned ? 'bg-amber-50 text-amber-600' : 'bg-zinc-100 text-zinc-400'
+                  achievement.earned ? 'bg-warning-soft text-warning' : 'bg-surface-muted text-muted'
                 )}
               >
                 {achievement.earned ? <Award className="h-5 w-5" /> : <Lock className="h-5 w-5" />}
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-semibold text-zinc-900">{achievement.title}</p>
+                  <p className="text-sm font-semibold text-heading">{achievement.title}</p>
                   {achievement.earned && <Badge tone="success">Unlocked</Badge>}
                 </div>
-                <p className="mt-1 text-xs text-zinc-500">{achievement.description}</p>
+                <p className="mt-1 text-xs text-body">{achievement.description}</p>
                 {achievement.earned && achievement.awardedAt && (
-                  <p className="mt-2 text-xs text-zinc-400">Earned {formatDate(achievement.awardedAt)}</p>
+                  <p className="mt-2 text-xs text-muted">Earned {formatDate(achievement.awardedAt)}</p>
                 )}
               </div>
             </div>

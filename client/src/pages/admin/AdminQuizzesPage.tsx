@@ -27,14 +27,14 @@ export function AdminQuizzesPage() {
       ]}
       head={['Title', 'Creator', 'Status', 'Attempts', 'Updated', '']}
       renderRow={(quiz) => (
-        <tr key={quiz._id} className="hover:bg-zinc-50/70">
-          <Td className="font-medium text-zinc-900">{quiz.title}</Td>
-          <Td className="text-zinc-500">{quiz.creator?.name ?? '—'}</Td>
+        <tr key={quiz._id} className="hover:bg-surface-muted/70">
+          <Td className="font-medium text-heading">{quiz.title}</Td>
+          <Td className="text-body">{quiz.creator?.name ?? '—'}</Td>
           <Td>
             <Badge tone={statusTone(quiz.status)}>{quiz.status ? STATUS_LABELS[quiz.status] : ''}</Badge>
           </Td>
           <Td>{formatNumber(quiz.stats?.attemptsCount ?? 0)}</Td>
-          <Td className="text-zinc-500">{formatDate(quiz.updatedAt)}</Td>
+          <Td className="text-body">{formatDate(quiz.updatedAt)}</Td>
           <Td>
             <Link to="/admin/quiz-approvals" className="text-sm font-medium text-brand-600 hover:text-brand-700">
               Review

@@ -28,7 +28,7 @@ export function AdminAuditLogsPage() {
       ]}
       head={['Action', 'Actor', 'Target', 'Details', 'IP', 'When']}
       renderRow={(log) => (
-        <tr key={log._id} className="hover:bg-zinc-50/70">
+        <tr key={log._id} className="hover:bg-surface-muted/70">
           <Td>
             <Badge
               tone={
@@ -42,18 +42,18 @@ export function AdminAuditLogsPage() {
               {log.action}
             </Badge>
           </Td>
-          <Td className="text-zinc-700">{log.actor?.name ?? '—'}</Td>
-          <Td className="text-zinc-500">
+          <Td className="text-body">{log.actor?.name ?? '—'}</Td>
+          <Td className="text-body">
             {log.targetType}
             {log.targetId ? ` · ${String(log.targetId).slice(-6)}` : ''}
           </Td>
-          <Td className="max-w-[240px] truncate text-zinc-500">
+          <Td className="max-w-[240px] truncate text-body">
             {log.details && Object.keys(log.details).length > 0
               ? JSON.stringify(log.details).slice(0, 120)
               : '—'}
           </Td>
-          <Td className="text-zinc-500">{log.ip ?? '—'}</Td>
-          <Td className="text-zinc-500">{formatDateTime(log.createdAt)}</Td>
+          <Td className="text-body">{log.ip ?? '—'}</Td>
+          <Td className="text-body">{formatDateTime(log.createdAt)}</Td>
         </tr>
       )}
       emptyTitle="No audit entries yet"

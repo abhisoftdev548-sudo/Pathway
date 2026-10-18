@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { STATUS_LABELS } from '@/utils/constants';
@@ -8,12 +9,12 @@ export { STATUS_LABELS };
 // ── Badge ────────────────────────────────────────────────────────────────────
 
 const badgeTones: Record<string, string> = {
-  neutral: 'bg-zinc-100 text-zinc-700',
+  neutral: 'bg-surface-muted text-body',
   brand: 'bg-brand-50 text-brand-700',
-  success: 'bg-emerald-50 text-emerald-700',
-  warning: 'bg-amber-50 text-amber-700',
-  danger: 'bg-red-50 text-red-700',
-  info: 'bg-sky-50 text-sky-700',
+  success: 'bg-success-soft text-success',
+  warning: 'bg-warning-soft text-warning',
+  danger: 'bg-danger-soft text-danger',
+  info: 'bg-info-soft text-info',
 };
 
 export function Badge({
@@ -75,18 +76,18 @@ export function StatCard({
   tone?: 'neutral' | 'brand' | 'success' | 'warning';
 }) {
   const iconTone = {
-    neutral: 'bg-zinc-100 text-zinc-500',
+    neutral: 'bg-surface-muted text-body',
     brand: 'bg-brand-50 text-brand-600',
-    success: 'bg-emerald-50 text-emerald-600',
-    warning: 'bg-amber-50 text-amber-600',
+    success: 'bg-success-soft text-success',
+    warning: 'bg-warning-soft text-warning',
   }[tone];
   return (
     <div className="surface flex items-start gap-3.5 p-4">
       {icon && <div className={cn('flex h-10 w-10 shrink-0 items-center justify-center rounded-lg', iconTone)}>{icon}</div>}
       <div className="min-w-0">
-        <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</p>
-        <p className="mt-1 truncate text-xl font-semibold text-zinc-900">{value}</p>
-        {hint && <p className="mt-0.5 text-xs text-zinc-500">{hint}</p>}
+        <p className="text-xs font-medium uppercase tracking-wide text-body">{label}</p>
+        <p className="mt-1 truncate text-xl font-semibold text-heading">{value}</p>
+        {hint && <p className="mt-0.5 text-xs text-body">{hint}</p>}
       </div>
     </div>
   );
@@ -116,7 +117,7 @@ export function Avatar({
       <img
         src={src}
         alt={name}
-        className={cn('rounded-full object-cover ring-1 ring-zinc-200', sizeClass)}
+        className={cn('rounded-full object-cover ring-1 ring-line', sizeClass)}
         onError={(e) => {
           // Sensible image-error state: fall back to initials on broken images.
           (e.currentTarget as HTMLImageElement).style.display = 'none';
@@ -145,8 +146,8 @@ export function RatingStars({ value, count, size = 'sm' }: { value?: number | nu
   return (
     <span className="inline-flex items-center gap-1">
       <Star className={cn(starSize, 'fill-amber-400 text-amber-400')} aria-hidden />
-      <span className="text-xs font-medium text-zinc-700">{value.toFixed(1)}</span>
-      {count !== undefined && count > 0 && <span className="text-xs text-zinc-400">({count})</span>}
+      <span className="text-xs font-medium text-heading">{value.toFixed(1)}</span>
+      {count !== undefined && count > 0 && <span className="text-xs text-muted">({count})</span>}
     </span>
   );
 }
@@ -169,19 +170,19 @@ export function ProgressBar({
   const pct = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
   const toneClass = {
     brand: 'bg-brand-600',
-    success: 'bg-emerald-500',
-    warning: 'bg-amber-500',
-    danger: 'bg-red-500',
+    success: 'bg-success-soft0',
+    warning: 'bg-warning-soft0',
+    danger: 'bg-danger-soft0',
   }[tone];
   return (
     <div>
       {label && (
-        <div className="mb-1 flex items-center justify-between text-xs text-zinc-500">
+        <div className="mb-1 flex items-center justify-between text-xs text-body">
           <span>{label}</span>
           <span>{Math.round(pct)}%</span>
         </div>
       )}
-      <div className="h-2 overflow-hidden rounded-full bg-zinc-100">
+      <div className="h-2 overflow-hidden rounded-full bg-surface-muted">
         <div
           className={cn('h-full rounded-full transition-all duration-500', toneClass)}
           style={{ width: `${pct}%` }}
@@ -216,7 +217,7 @@ export function Tabs({
   className?: string;
 }) {
   return (
-    <div className={cn('flex gap-1 overflow-x-auto border-b border-zinc-200', className)} role="tablist">
+    <div className={cn('flex gap-1 overflow-x-auto border-b border-line', className)} role="tablist">
       {items.map((item) => (
         <button
           key={item.key}
@@ -226,7 +227,7 @@ export function Tabs({
           onClick={() => onChange(item.key)}
           className={cn(
             'relative whitespace-nowrap px-3.5 py-2.5 text-sm font-medium transition-colors',
-            active === item.key ? 'text-brand-700' : 'text-zinc-500 hover:text-zinc-800'
+            active === item.key ? 'text-brand-700' : 'text-body hover:text-heading'
           )}
         >
           <span className="inline-flex items-center gap-1.5">
@@ -235,7 +236,7 @@ export function Tabs({
               <span
                 className={cn(
                   'rounded-full px-1.5 py-0.5 text-[10px] font-semibold',
-                  active === item.key ? 'bg-brand-100 text-brand-700' : 'bg-zinc-100 text-zinc-500'
+                  active === item.key ? 'bg-brand-100 text-brand-700' : 'bg-surface-muted text-body'
                 )}
               >
                 {item.count}
@@ -243,7 +244,12 @@ export function Tabs({
             )}
           </span>
           {active === item.key && (
-            <span className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-brand-600" aria-hidden />
+            <motion.span
+              layoutId="tab-underline"
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-brand-600"
+              aria-hidden
+            />
           )}
         </button>
       ))}
@@ -266,8 +272,8 @@ export function Pagination({
 }) {
   if (totalPages <= 1) return null;
   return (
-    <div className="flex items-center justify-between gap-3 border-t border-zinc-100 px-4 py-3">
-      <p className="text-xs text-zinc-500">
+    <div className="flex items-center justify-between gap-3 border-t border-line px-4 py-3">
+      <p className="text-xs text-body">
         Page {page} of {totalPages} · {total} total
       </p>
       <div className="flex items-center gap-1">
@@ -275,7 +281,7 @@ export function Pagination({
           type="button"
           disabled={page <= 1}
           onClick={() => onPage(page - 1)}
-          className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 disabled:opacity-40 disabled:hover:bg-transparent"
+          className="rounded-md p-1.5 text-body hover:bg-surface-muted disabled:opacity-40 disabled:hover:bg-transparent"
           aria-label="Previous page"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -284,7 +290,7 @@ export function Pagination({
           type="button"
           disabled={page >= totalPages}
           onClick={() => onPage(page + 1)}
-          className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 disabled:opacity-40 disabled:hover:bg-transparent"
+          className="rounded-md p-1.5 text-body hover:bg-surface-muted disabled:opacity-40 disabled:hover:bg-transparent"
           aria-label="Next page"
         >
           <ChevronRight className="h-4 w-4" />
@@ -301,27 +307,27 @@ export function Table({ head, children, className }: { head: ReactNode[]; childr
     <div className={cn('w-full overflow-x-auto', className)}>
       <table className="w-full min-w-[560px] border-collapse text-left text-sm">
         <thead>
-          <tr className="border-b border-zinc-200">
+          <tr className="border-b border-line">
             {head.map((h, i) => (
-              <th key={i} className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wide text-zinc-500">
+              <th key={i} className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wide text-body">
                 {h}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-zinc-100">{children}</tbody>
+        <tbody className="divide-y divide-line">{children}</tbody>
       </table>
     </div>
   );
 }
 
 export function Td({ children, className }: { children: ReactNode; className?: string }) {
-  return <td className={cn('px-4 py-3 align-middle text-zinc-700', className)}>{children}</td>;
+  return <td className={cn('px-4 py-3 align-middle text-body', className)}>{children}</td>;
 }
 
 export function Th({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <th className={cn('px-4 py-2.5 text-xs font-semibold uppercase tracking-wide text-zinc-500', className)}>
+    <th className={cn('px-4 py-2.5 text-xs font-semibold uppercase tracking-wide text-body', className)}>
       {children}
     </th>
   );

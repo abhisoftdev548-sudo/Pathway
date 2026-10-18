@@ -53,10 +53,10 @@ export function AttemptResultPage() {
               className={cn(
                 'mx-auto flex h-16 w-16 items-center justify-center rounded-full',
                 data.needsReview
-                  ? 'bg-amber-50 text-amber-600'
+                  ? 'bg-warning-soft text-warning'
                   : data.passed
-                    ? 'bg-emerald-50 text-emerald-600'
-                    : 'bg-zinc-100 text-zinc-500'
+                    ? 'bg-success-soft text-success'
+                    : 'bg-surface-muted text-body'
               )}
             >
               {data.needsReview ? (
@@ -68,14 +68,14 @@ export function AttemptResultPage() {
               )}
             </div>
 
-            <h1 className="mt-4 text-2xl font-semibold text-zinc-900">
+            <h1 className="mt-4 text-2xl font-semibold text-heading">
               {data.needsReview
                 ? 'Awaiting manual review'
                 : data.passed
                   ? 'Congratulations — you passed!'
                   : 'Attempt complete'}
             </h1>
-            {data.quiz && <p className="mt-1 text-sm text-zinc-500">{data.quiz.title}</p>}
+            {data.quiz && <p className="mt-1 text-sm text-body">{data.quiz.title}</p>}
 
             <div className="mx-auto mt-6 max-w-sm">
               <ProgressBar
@@ -93,17 +93,17 @@ export function AttemptResultPage() {
             </dl>
 
             {data.entryFeeCharged > 0 && (
-              <p className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-amber-50 px-3 py-1.5 text-xs text-amber-800">
+              <p className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-warning-soft px-3 py-1.5 text-xs text-warning">
                 <Coins className="h-3.5 w-3.5" /> {formatNumber(data.entryFeeCharged)} QCoins entry fee was charged
               </p>
             )}
             {data.rewardPaid > 0 && (
-              <p className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-1.5 text-xs text-emerald-800">
+              <p className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-success-soft px-3 py-1.5 text-xs text-success">
                 <Coins className="h-3.5 w-3.5" /> {formatNumber(data.rewardPaid)} QCoins reward credited to your wallet
               </p>
             )}
             {data.rewardInfo && !data.rewardInfo.eligible && data.rewardInfo.reason && data.quiz && (
-              <p className="mt-2 text-xs text-zinc-400">
+              <p className="mt-2 text-xs text-muted">
                 Reward not paid: {data.rewardInfo.reason.toLowerCase().replace(/_/g, ' ')}
               </p>
             )}
@@ -123,7 +123,7 @@ export function AttemptResultPage() {
               </Link>
             </div>
             {fresh && data.passed && (
-              <p className="mt-3 text-xs text-emerald-600">Nice work — your result is saved to your profile.</p>
+              <p className="mt-3 text-xs text-success">Nice work — your result is saved to your profile.</p>
             )}
           </CardBody>
         </Card>
@@ -153,50 +153,50 @@ export function AttemptResultPage() {
                 className={cn(
                   'rounded-lg border p-4',
                   review.needsReview
-                    ? 'border-amber-200 bg-amber-50/40'
+                    ? 'border-warning-soft bg-warning-soft/40'
                     : review.correct
-                      ? 'border-emerald-200 bg-emerald-50/30'
-                      : 'border-zinc-200'
+                      ? 'border-success-soft bg-success-soft/30'
+                      : 'border-line'
                 )}
               >
                 <div className="flex items-start justify-between gap-3">
-                  <p className="text-sm font-medium text-zinc-900">
+                  <p className="text-sm font-medium text-heading">
                     {i + 1}. {review.text}
                   </p>
                   <div className="flex shrink-0 items-center gap-2">
                     {review.needsReview ? (
                       <Badge tone="warning">In review</Badge>
                     ) : review.correct ? (
-                      <CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" />
+                      <CheckCircle2 className="h-4.5 w-4.5 text-success" />
                     ) : (
-                      <XCircle className="h-4.5 w-4.5 text-red-400" />
+                      <XCircle className="h-4.5 w-4.5 text-danger" />
                     )}
-                    <span className="text-xs text-zinc-400">
+                    <span className="text-xs text-muted">
                       {formatNumber(review.awardedPoints ?? 0)}/{formatNumber(review.points ?? 1)}
                     </span>
                   </div>
                 </div>
 
-                <p className="mt-1 text-xs text-zinc-400">
+                <p className="mt-1 text-xs text-muted">
                   {QUESTION_TYPE_LABELS[review.type as keyof typeof QUESTION_TYPE_LABELS] ?? review.type}
                 </p>
 
                 <div className="mt-3 space-y-1.5 text-sm">
-                  <p className="text-zinc-600">
-                    <span className="text-zinc-400">Your answer:</span>{' '}
+                  <p className="text-body">
+                    <span className="text-muted">Your answer:</span>{' '}
                     <AnswerText question={review} value={review.yourAnswer} />
                   </p>
                   {!review.correct && !review.needsReview && (
-                    <p className="text-emerald-700">
-                      <span className="text-zinc-400">Correct answer:</span>{' '}
+                    <p className="text-success">
+                      <span className="text-muted">Correct answer:</span>{' '}
                       <AnswerText question={review} value={correctAnswerOf(review)} />
                     </p>
                   )}
                 </div>
 
                 {review.explanation && (
-                  <p className="mt-3 rounded-md bg-zinc-50 px-3 py-2 text-xs text-zinc-600">
-                    <span className="font-medium text-zinc-700">Explanation:</span> {review.explanation}
+                  <p className="mt-3 rounded-md bg-background px-3 py-2 text-xs text-body">
+                    <span className="font-medium text-body">Explanation:</span> {review.explanation}
                   </p>
                 )}
               </div>
@@ -211,8 +211,8 @@ export function AttemptResultPage() {
 function Summary({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs text-zinc-500">{label}</dt>
-      <dd className="mt-0.5 text-sm font-semibold text-zinc-900">{value}</dd>
+      <dt className="text-xs text-body">{label}</dt>
+      <dd className="mt-0.5 text-sm font-semibold text-heading">{value}</dd>
     </div>
   );
 }
@@ -237,7 +237,7 @@ function correctAnswerOf(q: {
 
 function AnswerText({ question, value }: { question: { type: string; options?: { id: string; text: string }[] }; value: unknown }) {
   if (value === undefined || value === null || value === '' || (Array.isArray(value) && value.length === 0)) {
-    return <em className="text-zinc-400">No answer</em>;
+    return <em className="text-muted">No answer</em>;
   }
   if (Array.isArray(value)) {
     const texts = value.map((id) => question.options?.find((o) => o.id === id)?.text ?? String(id));

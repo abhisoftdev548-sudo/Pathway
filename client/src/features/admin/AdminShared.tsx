@@ -229,7 +229,7 @@ export function ModerationActions({
       >
         <div className="space-y-4">
           {mode === 'REQUEST_CHANGES' && (
-            <p className="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
+            <p className="rounded-lg bg-warning-soft px-3 py-2 text-xs text-warning">
               Explain clearly what the creator should fix — this note is shown to them.
             </p>
           )}

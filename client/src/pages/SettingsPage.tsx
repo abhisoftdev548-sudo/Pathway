@@ -117,10 +117,10 @@ export function SettingsPage() {
               onChange={(next) => updateSettings.mutate({ showOnLeaderboards: next })}
             />
             <div>
-              <p className="flex items-center gap-1.5 text-sm font-medium text-zinc-700">
-                <Monitor className="h-4 w-4 text-zinc-400" /> Appearance
+              <p className="flex items-center gap-1.5 text-sm font-medium text-body">
+                <Monitor className="h-4 w-4 text-muted" /> Appearance
               </p>
-              <p className="mt-0.5 text-xs text-zinc-500">
+              <p className="mt-0.5 text-xs text-body">
                 QuizSphere follows your system theme ({user?.settings?.theme ?? 'system'}).
               </p>
             </div>
@@ -147,20 +147,20 @@ export function SettingsPage() {
             {sessionsQuery.isLoading ? (
               <SkeletonList count={1} />
             ) : (sessionsQuery.data?.items ?? []).length === 0 ? (
-              <p className="text-sm text-zinc-500">No active sessions found.</p>
+              <p className="text-sm text-body">No active sessions found.</p>
             ) : (
               <div className="space-y-2">
                 {(sessionsQuery.data?.items ?? []).map((session) => (
                   <div
                     key={session.familyId}
-                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-zinc-100 px-4 py-3"
+                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-line px-4 py-3"
                   >
                     <div>
-                      <p className="flex items-center gap-2 text-sm font-medium text-zinc-900">
-                        <ShieldCheck className="h-4 w-4 text-emerald-500" />
+                      <p className="flex items-center gap-2 text-sm font-medium text-heading">
+                        <ShieldCheck className="h-4 w-4 text-success" />
                         {session.userAgent?.slice(0, 60) ?? 'Unknown device'}
                       </p>
-                      <p className="mt-0.5 text-xs text-zinc-400">
+                      <p className="mt-0.5 text-xs text-muted">
                         {session.ip ? `${session.ip} · ` : ''}started {formatDateTime(session.createdAt)}
                       </p>
                     </div>

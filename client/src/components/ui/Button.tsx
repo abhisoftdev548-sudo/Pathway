@@ -17,11 +17,11 @@ const variantClasses: Record<Variant, string> = {
   primary:
     'bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800 disabled:bg-brand-300',
   secondary:
-    'bg-zinc-900 text-white hover:bg-zinc-800 active:bg-zinc-700 disabled:bg-zinc-400',
+    'bg-heading text-white hover:bg-[#22304D] active:bg-[#0F182B] disabled:bg-muted',
   outline:
-    'border border-gray-300 bg-white text-zinc-700 hover:bg-gray-50 active:bg-gray-100 disabled:text-zinc-400',
-  ghost: 'text-zinc-600 hover:bg-gray-100 hover:text-zinc-900 disabled:text-zinc-400',
-  danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 disabled:bg-red-300',
+    'border border-line-strong bg-surface text-heading hover:bg-surface-muted active:bg-line disabled:text-muted',
+  ghost: 'text-body hover:bg-surface-muted hover:text-heading disabled:text-muted',
+  danger: 'bg-danger text-white hover:brightness-95 active:brightness-90 disabled:bg-danger/50',
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -31,7 +31,7 @@ const sizeClasses: Record<Size, string> = {
 };
 
 /**
- * Primary interactive button with subtle press animation (respects reduced motion).
+ * Primary interactive button with subtle press feedback (respects reduced motion).
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   { variant = 'primary', size = 'md', loading = false, icon, className, children, disabled, ...rest },
@@ -40,7 +40,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   const reduceMotion = useReducedMotion();
   const motionProps: HTMLMotionProps<'button'> = reduceMotion
     ? {}
-    : { whileTap: { scale: 0.97 }, whileHover: { y: -1 }, transition: { duration: 0.12 } };
+    : { whileTap: { scale: 0.98 }, transition: { duration: 0.12 } };
 
   return (
     <motion.button

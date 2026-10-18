@@ -97,7 +97,7 @@ export function AdminUserDetailPage() {
                 <Td>{formatNumber(reconciliation.discrepancy.totalSpent)}</Td>
               </tr>
             </Table>
-            <p className="mt-3 text-xs text-zinc-400">
+            <p className="mt-3 text-xs text-muted">
               {reconciliation.ledger.transactionCount} ledger entries recorded.
             </p>
           </CardBody>
@@ -107,18 +107,18 @@ export function AdminUserDetailPage() {
           <CardHeader title="Reports involving this user" subtitle="Filed by them or against them." />
           <CardBody>
             {reports.length === 0 ? (
-              <p className="text-sm text-zinc-500">No reports recorded.</p>
+              <p className="text-sm text-body">No reports recorded.</p>
             ) : (
               <div className="space-y-2">
                 {reports.map((report) => (
-                  <div key={report._id} className="rounded-lg border border-zinc-100 px-4 py-2.5">
+                  <div key={report._id} className="rounded-lg border border-line px-4 py-2.5">
                     <div className="flex items-center justify-between gap-2">
-                      <p className="text-sm font-medium text-zinc-900">{report.reason.replace(/_/g, ' ').toLowerCase()}</p>
+                      <p className="text-sm font-medium text-heading">{report.reason.replace(/_/g, ' ').toLowerCase()}</p>
                       <Badge tone={report.status === 'OPEN' ? 'warning' : report.status === 'RESOLVED' ? 'success' : 'neutral'}>
                         {report.status}
                       </Badge>
                     </div>
-                    <p className="mt-0.5 text-xs text-zinc-400">
+                    <p className="mt-0.5 text-xs text-muted">
                       {report.targetType} · {formatDate(report.createdAt)}
                     </p>
                   </div>
@@ -133,23 +133,23 @@ export function AdminUserDetailPage() {
         <CardHeader title="Recent transactions" />
         <CardBody className="p-0">
           {recentTransactions.length === 0 ? (
-            <p className="px-5 py-4 text-sm text-zinc-500">No transactions yet.</p>
+            <p className="px-5 py-4 text-sm text-body">No transactions yet.</p>
           ) : (
             <Table head={['Tx ID', 'Type', 'Amount', 'Balance after', 'Date']}>
               {recentTransactions.map((tx) => (
-                <tr key={tx._id} className="hover:bg-zinc-50/70">
+                <tr key={tx._id} className="hover:bg-surface-muted/70">
                   <Td>
-                    <span className="font-mono text-xs text-zinc-500">{tx.txId}</span>
+                    <span className="font-mono text-xs text-body">{tx.txId}</span>
                   </Td>
                   <Td>{TX_TYPE_LABELS[tx.type] ?? tx.type}</Td>
                   <Td>
-                    <span className={tx.amount > 0 ? 'text-emerald-600' : 'text-zinc-800'}>
+                    <span className={tx.amount > 0 ? 'text-success' : 'text-heading'}>
                       {tx.amount > 0 ? '+' : ''}
                       {formatNumber(tx.amount)}
                     </span>
                   </Td>
                   <Td>{formatNumber(tx.balanceAfter)}</Td>
-                  <Td className="text-zinc-500">{formatDate(tx.createdAt)}</Td>
+                  <Td className="text-body">{formatDate(tx.createdAt)}</Td>
                 </tr>
               ))}
             </Table>

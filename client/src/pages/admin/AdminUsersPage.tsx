@@ -22,13 +22,13 @@ export function AdminUsersPage() {
       ]}
       head={['User', 'Role', 'Status', 'QCoins', 'Joined', '']}
       renderRow={(user) => (
-        <tr key={user._id} className="hover:bg-zinc-50/70">
+        <tr key={user._id} className="hover:bg-surface-muted/70">
           <Td>
             <div className="flex items-center gap-3">
               <Avatar name={user.name} src={user.avatar?.url} size="sm" />
               <div>
-                <p className="font-medium text-zinc-900">{user.name}</p>
-                <p className="text-xs text-zinc-400">{user.email}</p>
+                <p className="font-medium text-heading">{user.name}</p>
+                <p className="text-xs text-muted">{user.email}</p>
               </div>
             </div>
           </Td>
@@ -39,7 +39,7 @@ export function AdminUsersPage() {
             <Badge tone={user.status === 'ACTIVE' ? 'success' : 'danger'}>{user.status}</Badge>
           </Td>
           <Td>{formatNumber(user.wallet?.balance ?? 0)}</Td>
-          <Td className="text-zinc-500">{formatDate(user.createdAt)}</Td>
+          <Td className="text-body">{formatDate(user.createdAt)}</Td>
           <Td>
             <Link to={`/admin/users/${user._id}`} className="text-sm font-medium text-brand-600 hover:text-brand-700">
               View

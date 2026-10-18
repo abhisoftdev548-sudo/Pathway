@@ -54,7 +54,7 @@ export function Modal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="absolute inset-0 bg-zinc-900/40"
+            className="absolute inset-0 bg-heading/40"
             onClick={onClose}
             aria-hidden
           />
@@ -68,22 +68,22 @@ export function Modal({
             transition={{ duration: 0.18, ease: 'easeOut' }}
             className={cn('relative w-full rounded-xl bg-white shadow-lg', sizeClass)}
           >
-            <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-5 py-4">
+            <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
               <div>
-                <h2 className="text-base font-semibold text-zinc-900">{title}</h2>
-                {description && <p className="mt-0.5 text-sm text-zinc-500">{description}</p>}
+                <h2 className="text-base font-semibold text-heading">{title}</h2>
+                {description && <p className="mt-0.5 text-sm text-body">{description}</p>}
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded p-1 text-zinc-400 hover:bg-gray-100 hover:text-zinc-600"
+                className="rounded p-1 text-muted hover:bg-surface-muted hover:text-body"
                 aria-label="Close dialog"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="max-h-[75vh] overflow-y-auto px-5 py-4">{children}</div>
-            {footer && <div className="flex justify-end gap-2 border-t border-gray-200 px-5 py-4">{footer}</div>}
+            <div className="max-h-[70vh] overflow-y-auto px-5 py-4">{children}</div>
+            {footer && <div className="flex justify-end gap-2 border-t border-line px-5 py-4">{footer}</div>}
           </motion.div>
         </div>
       )}
@@ -121,7 +121,7 @@ export function Drawer({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="absolute inset-0 bg-zinc-900/40"
+            className="absolute inset-0 bg-heading/40"
             onClick={onClose}
             aria-hidden
           />
@@ -139,12 +139,12 @@ export function Drawer({
             )}
           >
             {title && (
-              <div className="flex items-center justify-between border-b border-slate-700 px-4 py-3">
-                <h2 className="text-sm font-semibold text-white">{title}</h2>
+              <div className="flex items-center justify-between border-b border-line px-4 py-3">
+                <h2 className="text-sm font-semibold text-heading">{title}</h2>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-white"
+                  className="rounded p-1 text-muted hover:bg-surface-muted hover:text-body"
                   aria-label="Close panel"
                 >
                   <X className="h-4 w-4" />
@@ -193,7 +193,7 @@ export function ConfirmDialog({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg px-3.5 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100"
+            className="rounded-lg px-3.5 py-2 text-sm font-medium text-body hover:bg-surface-muted"
           >
             {cancelLabel}
           </button>
@@ -203,7 +203,7 @@ export function ConfirmDialog({
             disabled={loading}
             className={cn(
               'rounded-lg px-3.5 py-2 text-sm font-medium text-white disabled:opacity-60',
-              destructive ? 'bg-red-600 hover:bg-red-700' : 'bg-brand-600 hover:bg-brand-700'
+              destructive ? 'bg-danger hover:brightness-95' : 'bg-brand-600 hover:bg-brand-700'
             )}
           >
             {loading ? 'Working…' : confirmLabel}
@@ -211,7 +211,7 @@ export function ConfirmDialog({
         </>
       }
     >
-      <div className="text-sm text-zinc-600">{message}</div>
+      <div className="text-sm text-body">{message}</div>
     </Modal>
   );
 }

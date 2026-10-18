@@ -65,7 +65,7 @@ export function CreatorDraftsPage() {
         <div className="space-y-8">
           {quizItems.length > 0 && (
             <section>
-              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-400">Quiz drafts</h2>
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Quiz drafts</h2>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {quizItems.map((quiz: QuizSummary) => (
                   <QuizCard key={quiz._id} quiz={quiz} showStatus />
@@ -75,7 +75,7 @@ export function CreatorDraftsPage() {
           )}
           {pollItems.length > 0 && (
             <section>
-              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-400">Poll drafts</h2>
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Poll drafts</h2>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {pollItems.map((poll: PollSummary) => (
                   <PollCard key={poll._id} poll={poll} showStatus />

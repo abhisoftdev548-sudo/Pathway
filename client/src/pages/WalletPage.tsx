@@ -120,24 +120,24 @@ export function WalletPage() {
           <>
             <Table head={['Transaction', 'Type', 'Activity', 'Date', 'Amount', 'Balance']}>
               {items.map((tx: LedgerDto) => (
-                <tr key={tx._id} className="hover:bg-zinc-50/70">
+                <tr key={tx._id} className="hover:bg-surface-muted/70">
                   <Td>
-                    <span className="font-mono text-xs text-zinc-500">{tx.txId}</span>
+                    <span className="font-mono text-xs text-body">{tx.txId}</span>
                   </Td>
                   <Td>
                     <Badge tone={tx.type === 'REWARD' ? 'success' : tx.type === 'REFUND' ? 'info' : 'neutral'}>
                       {TX_TYPE_LABELS[tx.type] ?? tx.type}
                     </Badge>
                   </Td>
-                  <Td className="max-w-[180px] truncate text-zinc-500">{tx.reason || tx.activityType || '—'}</Td>
-                  <Td className="text-zinc-500">{formatDate(tx.createdAt)}</Td>
+                  <Td className="max-w-[180px] truncate text-body">{tx.reason || tx.activityType || '—'}</Td>
+                  <Td className="text-body">{formatDate(tx.createdAt)}</Td>
                   <Td>
-                    <span className={tx.amount > 0 ? 'font-medium text-emerald-600' : 'font-medium text-zinc-800'}>
+                    <span className={tx.amount > 0 ? 'font-medium text-success' : 'font-medium text-heading'}>
                       {tx.amount > 0 ? '+' : ''}
                       {formatNumber(tx.amount)}
                     </span>
                   </Td>
-                  <Td className="text-zinc-500">{formatNumber(tx.balanceAfter)}</Td>
+                  <Td className="text-body">{formatNumber(tx.balanceAfter)}</Td>
                 </tr>
               ))}
             </Table>
@@ -153,11 +153,11 @@ export function WalletPage() {
           <CardBody>
             <dl className="space-y-3">
               {Object.entries(policy.rules).map(([key, value]) => (
-                <div key={key} className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <dt className="text-sm font-medium capitalize text-zinc-900">
+                <div key={key} className="rounded-lg border border-line px-4 py-3">
+                  <dt className="text-sm font-medium capitalize text-heading">
                     {key.replace(/([A-Z])/g, ' $1').toLowerCase()}
                   </dt>
-                  <dd className="mt-1 text-sm text-zinc-600">{value}</dd>
+                  <dd className="mt-1 text-sm text-body">{value}</dd>
                 </div>
               ))}
             </dl>
