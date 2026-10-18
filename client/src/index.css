@@ -1,0 +1,80 @@
+@import '@fontsource-variable/inter';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-900 font-sans;
+  }
+
+  /* Consistent focus visibility for keyboard users */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply bg-white border border-zinc-200/80 rounded-lg shadow-card;
+  }
+
+  .field-label {
+    @apply block text-sm font-medium text-zinc-700 mb-1.5;
+  }
+
+  .field-input {
+    @apply w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900
+      placeholder:text-zinc-400
+      focus:border-brand-500 focus:ring-1 focus:ring-brand-500
+      disabled:cursor-not-allowed disabled:bg-zinc-50 disabled:text-zinc-500;
+  }
+
+  .field-error {
+    @apply mt-1 text-xs text-red-600;
+  }
+}
+
+@layer utilities {
+  /* Skeleton shimmer used by loading states */
+  .skeleton {
+    @apply rounded-md bg-zinc-200/80;
+    background-image: linear-gradient(
+      90deg,
+      rgb(228 228 231 / 0.6) 0%,
+      rgb(244 244 245 / 1) 50%,
+      rgb(228 228 231 / 0.6) 100%
+    );
+    background-size: 400px 100%;
+    @apply animate-shimmer;
+  }
+}
+
+/* Respect reduced motion — framer-motion also reads this via useReducedMotion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Slim, unobtrusive scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 rounded-full;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

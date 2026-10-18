@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+client/dist/
+server/dist/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+!*.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data (local FerretDB / SQLite state)
+.data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Testing
+coverage/
+.vitest/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Misc
+.cache/
+tmp/
+temp/
