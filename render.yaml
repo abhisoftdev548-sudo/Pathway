@@ -1,0 +1,39 @@
+# Render blueprint for the PathForge API.
+# Create a MongoDB Atlas cluster separately and paste MONGODB_URI into the service.
+services:
+  - type: web
+    name: pathforge-api
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm --workspace @pathforge/server run build && npm --workspace @pathforge/client run build
+    startCommand: node server/dist/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_DIST
+        value: client/dist
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: COOKIE_SAMESITE
+        value: lax
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: TRUST_PROXY
+        value: "1"
+      - key: SEED_ADMIN_EMAIL
+        value: admin@pathforge.local
+      - key: SEED_ADMIN_PASSWORD
+        sync: false
+      - key: SEED_DEMO_EMAIL
+        value: demo@pathforge.dev
+      - key: SEED_DEMO_PASSWORD
+        sync: false

@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 247 247 244;
+  --surface: 255 255 255;
+  --ink: 24 33 38;
+  --muted: 100 112 119;
+  --line: 226 228 224;
+  --brand: 13 118 110;
+  --brand-soft: 223 242 238;
+  --brand-deep: 8 66 62;
+  --accent: 198 108 17;
+  --danger: 185 28 28;
+  --success: 21 128 61;
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  ::selection {
+    background: rgb(var(--brand) / 0.18);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--brand));
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--line));
+    border-radius: 999px;
+    border: 2px solid rgb(var(--canvas));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--muted) / 0.35);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full max-w-3xl px-5 sm:px-8;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+
+  .lift {
+    @apply transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-muted;
+  }
+
+  .link-underline {
+    @apply underline decoration-line decoration-2 underline-offset-4 transition hover:decoration-brand;
+  }
+
+  .rich-text {
+    @apply text-sm leading-relaxed text-ink/80;
+  }
+  .rich-text p {
+    @apply mb-3;
+  }
+  .rich-text ul {
+    @apply mb-3 list-disc space-y-1 pl-5;
+  }
+  .rich-text ol {
+    @apply mb-3 list-decimal space-y-1 pl-5;
+  }
+  .rich-text strong {
+    @apply font-semibold text-ink;
+  }
+  .rich-text code {
+    @apply rounded bg-canvas px-1.5 py-0.5 font-mono text-[0.8em];
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(rgb(var(--line) / 0.55) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--line) / 0.55) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .noise {
+    background-image: radial-gradient(rgb(var(--ink) / 0.045) 0.6px, transparent 0.6px);
+    background-size: 4px 4px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
