@@ -69,24 +69,24 @@ export function AdminQuizApprovalsPage() {
                   }
                 />
                 <CardBody>
-                  {quiz.description && <p className="text-sm text-zinc-600">{quiz.description}</p>}
+                  {quiz.description && <p className="text-sm text-body">{quiz.description}</p>}
 
-                  <dl className="mt-3 grid grid-cols-2 gap-3 text-xs text-zinc-500 sm:grid-cols-4">
+                  <dl className="mt-3 grid grid-cols-2 gap-3 text-xs text-body sm:grid-cols-4">
                     <div>
                       <dt>Difficulty</dt>
-                      <dd className="font-medium text-zinc-800">{quiz.difficulty}</dd>
+                      <dd className="font-medium text-heading">{quiz.difficulty}</dd>
                     </div>
                     <div>
                       <dt>Passing score</dt>
-                      <dd className="font-medium text-zinc-800">{quiz.passingScore}%</dd>
+                      <dd className="font-medium text-heading">{quiz.passingScore}%</dd>
                     </div>
                     <div>
                       <dt>Entry fee</dt>
-                      <dd className="font-medium text-zinc-800">{formatNumber(quiz.entryFee ?? 0)} QCoins</dd>
+                      <dd className="font-medium text-heading">{formatNumber(quiz.entryFee ?? 0)} QCoins</dd>
                     </div>
                     <div>
                       <dt>Reward</dt>
-                      <dd className="font-medium text-zinc-800">
+                      <dd className="font-medium text-heading">
                         {formatNumber(quiz.reward ?? 0)} QCoins
                         {quiz.rewardMode === 'TOP_PERCENT' ? ` (top ${quiz.topPercent}%)` : ''}
                       </dd>
@@ -105,13 +105,13 @@ export function AdminQuizApprovalsPage() {
                   </div>
 
                   {expanded === quiz._id && (
-                    <div className="mt-4 space-y-3 rounded-lg bg-zinc-50 p-4">
+                    <div className="mt-4 space-y-3 rounded-lg bg-background p-4">
                       {(quiz.questions ?? []).map((q, i) => (
                         <div key={q.id} className="rounded-md bg-white p-3 text-sm">
-                          <p className="font-medium text-zinc-900">
+                          <p className="font-medium text-heading">
                             {i + 1}. {q.text}
                           </p>
-                          <p className="mt-1 text-xs text-zinc-500">
+                          <p className="mt-1 text-xs text-body">
                             Correct answer:{' '}
                             {q.type === 'TRUE_FALSE'
                               ? String(q.correctBoolean)
@@ -125,7 +125,7 @@ export function AdminQuizApprovalsPage() {
                                       .join(', ')}
                           </p>
                           {q.explanation && (
-                            <p className="mt-1 text-xs text-zinc-600">Explanation: {q.explanation}</p>
+                            <p className="mt-1 text-xs text-body">Explanation: {q.explanation}</p>
                           )}
                         </div>
                       ))}

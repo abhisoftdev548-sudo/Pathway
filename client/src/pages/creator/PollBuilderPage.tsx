@@ -219,7 +219,7 @@ export function PollBuilderPage() {
                         <button
                           type="button"
                           onClick={() => setOptions(options.filter((_, j) => j !== i))}
-                          className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                          className="rounded p-1.5 text-muted hover:bg-surface-muted hover:text-danger"
                           aria-label="Remove option"
                         >
                           <X className="h-4 w-4" />

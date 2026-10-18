@@ -105,8 +105,8 @@ export function CreatorAnalyticsPage() {
                   const completions = quiz.stats?.completionsCount ?? 0;
                   const passes = quiz.stats?.passesCount ?? 0;
                   return (
-                    <tr key={quiz._id} className="hover:bg-zinc-50/70">
-                      <Td className="font-medium text-zinc-900">{quiz.title}</Td>
+                    <tr key={quiz._id} className="hover:bg-surface-muted/70">
+                      <Td className="font-medium text-heading">{quiz.title}</Td>
                       <Td>{formatNumber(quiz.stats?.attemptsCount ?? 0)}</Td>
                       <Td>{completions > 0 ? formatPercent((passes / completions) * 100) : '—'}</Td>
                       <Td>{formatPercent(quiz.stats?.avgScore ?? 0, 1)}</Td>
@@ -114,10 +114,10 @@ export function CreatorAnalyticsPage() {
                         {(quiz.stats?.ratingCount ?? 0) > 0 ? (
                           <RatingStars value={quiz.stats?.ratingBayes ?? 0} count={quiz.stats?.ratingCount} />
                         ) : (
-                          <span className="text-zinc-400">—</span>
+                          <span className="text-muted">—</span>
                         )}
                       </Td>
-                      <Td className="text-zinc-500">{formatDate(quiz.publishedAt)}</Td>
+                      <Td className="text-body">{formatDate(quiz.publishedAt)}</Td>
                     </tr>
                   );
                 })}

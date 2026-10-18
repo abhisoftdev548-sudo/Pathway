@@ -51,6 +51,31 @@ export function AdminOverviewPage() {
         description="Live platform metrics and recent moderation activity."
       />
 
+      {/* Horizontal admin workspace navigation */}
+      <nav
+        aria-label="Admin sections"
+        className="mb-6 flex gap-1.5 overflow-x-auto pb-1"
+      >
+        {[
+          { to: '/admin/quiz-approvals', label: 'Quiz approvals', icon: Vote },
+          { to: '/admin/poll-approvals', label: 'Poll approvals', icon: Vote },
+          { to: '/admin/user-management', label: 'Users', icon: Users },
+          { to: '/admin/content-reports', label: 'Reports', icon: Flag },
+          { to: '/admin/refunds', label: 'Refunds', icon: RotateCcw },
+          { to: '/admin/ledger', label: 'Ledger', icon: Coins },
+          { to: '/admin/moderation-history', label: 'History', icon: History },
+        ].map((item) => (
+          <Link
+            key={item.to}
+            to={item.to}
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-medium text-body transition-colors hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700"
+          >
+            <item.icon className="h-3.5 w-3.5 text-muted" />
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Registered users" value={formatNumber(data.users.registered)} icon={<Users className="h-5 w-5" />} tone="brand" />
         <StatCard
@@ -98,11 +123,11 @@ export function AdminOverviewPage() {
       </div>
 
       {/* 24h activity — only rendered as supporting context, real numbers */}
-      <div className="mt-5 flex flex-wrap gap-3 text-sm text-zinc-600">
-        <span className="rounded-lg bg-zinc-100 px-3 py-1.5">
+      <div className="mt-5 flex flex-wrap gap-3 text-sm text-body">
+        <span className="rounded-lg bg-surface-muted px-3 py-1.5">
           Last 24h: <strong>{formatNumber(data.activity24h.attempts)}</strong> quiz attempts
         </span>
-        <span className="rounded-lg bg-zinc-100 px-3 py-1.5">
+        <span className="rounded-lg bg-surface-muted px-3 py-1.5">
           Last 24h: <strong>{formatNumber(data.activity24h.votes)}</strong> poll votes
         </span>
       </div>
@@ -130,7 +155,7 @@ export function AdminOverviewPage() {
             <CardBody className="p-0">
               <Table head={['Action', 'Content', 'By', 'When']}>
                 {data.recentModerationActions.map((action) => (
-                  <tr key={action.id} className="hover:bg-zinc-50/70">
+                  <tr key={action.id} className="hover:bg-surface-muted/70">
                     <Td>
                       <Badge
                         tone={
@@ -151,13 +176,13 @@ export function AdminOverviewPage() {
                             ? `/admin/quizzes`
                             : `/admin/polls`
                         }
-                        className="text-zinc-700 hover:text-brand-700"
+                        className="text-body hover:text-brand-700"
                       >
                         {action.targetType} · {action.targetId.slice(-6)}
                       </Link>
                     </Td>
-                    <Td className="text-zinc-500">{action.reviewer}</Td>
-                    <Td className="text-zinc-500">{formatDate(action.createdAt)}</Td>
+                    <Td className="text-body">{action.reviewer}</Td>
+                    <Td className="text-body">{formatDate(action.createdAt)}</Td>
                   </tr>
                 ))}
               </Table>
@@ -200,9 +225,9 @@ function QuickAction({ to, icon, label }: { to: string; icon: React.ReactNode; l
   return (
     <Link
       to={to}
-      className="flex items-center gap-3 rounded-lg border border-zinc-100 px-4 py-3 text-sm text-zinc-700 hover:border-brand-200 hover:bg-brand-50/40"
+      className="flex items-center gap-3 rounded-lg border border-line px-4 py-3 text-sm text-body hover:border-brand-200 hover:bg-brand-50/40"
     >
-      <span className="text-zinc-400">{icon}</span>
+      <span className="text-muted">{icon}</span>
       {label}
     </Link>
   );

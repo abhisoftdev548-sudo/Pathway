@@ -26,11 +26,11 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
   const unread = notifications?.unreadCount ?? 0;
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-zinc-200/80 bg-white/90 px-4 backdrop-blur sm:px-6">
+    <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-line bg-surface/90 px-4 backdrop-blur sm:px-6">
       <button
         type="button"
         onClick={onOpenMobileNav}
-        className="rounded-lg p-2 text-zinc-500 hover:bg-zinc-100 lg:hidden"
+        className="rounded-lg p-2 text-body hover:bg-surface-muted lg:hidden"
         aria-label="Open navigation"
       >
         <Menu className="h-5 w-5" />
@@ -39,7 +39,7 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
       <button
         type="button"
         onClick={() => navigate('/explore/quizzes')}
-        className="hidden items-center gap-2 rounded-lg border border-zinc-200 px-3 py-1.5 text-sm text-zinc-400 hover:border-zinc-300 hover:text-zinc-600 sm:flex sm:w-64"
+        className="hidden items-center gap-2 rounded-lg border border-line px-3 py-1.5 text-sm text-muted hover:border-line-strong hover:text-body sm:flex sm:w-64"
       >
         <Search className="h-4 w-4" />
         <span>Search quizzes & polls…</span>
@@ -51,16 +51,16 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
         <>
           <Link
             to="/wallet"
-            className="hidden items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium text-zinc-600 hover:bg-zinc-100 sm:flex"
+            className="hidden items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium text-body hover:bg-surface-muted sm:flex"
             title="QCoin balance"
           >
-            <Coins className="h-4 w-4 text-amber-500" />
+            <Coins className="h-4 w-4 text-warning" />
             <span>{formatNumber(user.wallet?.balance ?? 0)}</span>
           </Link>
 
           <Link
             to="/notifications"
-            className="relative rounded-lg p-2 text-zinc-500 hover:bg-zinc-100"
+            className="relative rounded-lg p-2 text-body hover:bg-surface-muted"
             aria-label={unread > 0 ? `Notifications, ${unread} unread` : 'Notifications'}
           >
             <Bell className="h-5 w-5" />
@@ -74,23 +74,26 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
           <div className="group relative">
             <button
               type="button"
-              className="flex items-center gap-2 rounded-lg p-1.5 hover:bg-zinc-100"
+              className="flex items-center gap-2 rounded-lg p-1.5 hover:bg-surface-muted"
               aria-label="Account menu"
             >
               <Avatar name={user.name} src={user.avatar?.url} size="sm" />
+              <span className="hidden max-w-[120px] truncate text-sm font-medium text-heading lg:block">
+                {user.name}
+              </span>
             </button>
-            <div className="invisible absolute right-0 top-full z-50 w-52 rounded-lg border border-zinc-200 bg-white py-1 opacity-0 shadow-pop transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              <div className="border-b border-zinc-100 px-3.5 py-2">
-                <p className="truncate text-sm font-medium text-zinc-900">{user.name}</p>
-                <p className="truncate text-xs text-zinc-500">{user.email}</p>
+            <div className="invisible absolute right-0 top-full z-50 w-52 rounded-lg border border-line bg-white py-1 opacity-0 shadow-pop transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              <div className="border-b border-line px-3.5 py-2">
+                <p className="truncate text-sm font-medium text-heading">{user.name}</p>
+                <p className="truncate text-xs text-body">{user.email}</p>
                 {user.role === 'ADMIN' && (
                   <Badge tone="brand" className="mt-1">
                     Admin
                   </Badge>
                 )}
               </div>
-              <Link to="/profile" className="flex items-center gap-2 px-3.5 py-2 text-sm text-zinc-700 hover:bg-zinc-50">
-                <UserIcon className="h-4 w-4 text-zinc-400" /> My Profile
+              <Link to="/profile" className="flex items-center gap-2 px-3.5 py-2 text-sm text-body hover:bg-surface-muted">
+                <UserIcon className="h-4 w-4 text-muted" /> My Profile
               </Link>
               <button
                 type="button"
@@ -99,7 +102,7 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
                   toast.success('Signed out');
                   navigate('/');
                 }}
-                className="flex w-full items-center gap-2 px-3.5 py-2 text-sm text-red-600 hover:bg-red-50"
+                className="flex w-full items-center gap-2 px-3.5 py-2 text-sm text-danger hover:bg-danger-soft"
               >
                 <LogOut className="h-4 w-4" /> Sign out
               </button>
@@ -112,7 +115,7 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
         <div className="flex items-center gap-2">
           <Link
             to="/login"
-            className="rounded-lg px-3.5 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100"
+            className="rounded-lg px-3.5 py-2 text-sm font-medium text-body hover:bg-surface-muted"
           >
             Sign in
           </Link>

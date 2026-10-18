@@ -100,7 +100,7 @@ export function AdminSettingsPage() {
             <CardHeader title="Current settings" subtitle={`${(data?.items ?? []).length} configured keys`} />
             {(data?.items ?? []).length === 0 ? (
               <CardBody>
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-body">
                   No custom settings yet — platform defaults are in use. Reward and fee limits can be managed from
                   their dedicated pages.
                 </p>
@@ -108,10 +108,10 @@ export function AdminSettingsPage() {
             ) : (
               <Table head={['Key', 'Value', 'Updated', '']}>
                 {(data?.items ?? []).map((setting) => (
-                  <tr key={setting.key} className="hover:bg-zinc-50/70">
+                  <tr key={setting.key} className="hover:bg-surface-muted/70">
                     <Td>
-                      <p className="font-medium text-zinc-900">{setting.key}</p>
-                      {setting.description && <p className="text-xs text-zinc-400">{setting.description}</p>}
+                      <p className="font-medium text-heading">{setting.key}</p>
+                      {setting.description && <p className="text-xs text-muted">{setting.description}</p>}
                     </Td>
                     <Td>
                       {editKey === setting.key ? (
@@ -121,12 +121,12 @@ export function AdminSettingsPage() {
                           className="min-h-[100px] font-mono text-xs"
                         />
                       ) : (
-                        <span className="block max-w-[220px] truncate font-mono text-xs text-zinc-500">
+                        <span className="block max-w-[220px] truncate font-mono text-xs text-body">
                           {JSON.stringify(setting.value)}
                         </span>
                       )}
                     </Td>
-                    <Td className="text-zinc-500">{formatDateTime(setting.updatedAt)}</Td>
+                    <Td className="text-body">{formatDateTime(setting.updatedAt)}</Td>
                     <Td>
                       {editKey === setting.key ? (
                         <div className="flex gap-1.5">

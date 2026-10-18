@@ -27,14 +27,14 @@ export function AdminPollsPage() {
       ]}
       head={['Title', 'Creator', 'Status', 'Voters', 'Ends', '']}
       renderRow={(poll) => (
-        <tr key={poll._id} className="hover:bg-zinc-50/70">
-          <Td className="font-medium text-zinc-900">{poll.title}</Td>
-          <Td className="text-zinc-500">{poll.creator?.name ?? '—'}</Td>
+        <tr key={poll._id} className="hover:bg-surface-muted/70">
+          <Td className="font-medium text-heading">{poll.title}</Td>
+          <Td className="text-body">{poll.creator?.name ?? '—'}</Td>
           <Td>
             <Badge tone={statusTone(poll.status)}>{poll.status ? STATUS_LABELS[poll.status] : ''}</Badge>
           </Td>
           <Td>{formatNumber(poll.stats?.uniqueVoters ?? 0)}</Td>
-          <Td className="text-zinc-500">{formatDate(poll.endsAt)}</Td>
+          <Td className="text-body">{formatDate(poll.endsAt)}</Td>
           <Td>
             <Link to="/admin/poll-approvals" className="text-sm font-medium text-brand-600 hover:text-brand-700">
               Review

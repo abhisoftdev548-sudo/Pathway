@@ -65,16 +65,16 @@ export function RatingsReviewsPage() {
               <div key={rating._id} className="surface p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm font-medium text-zinc-900">
+                    <p className="text-sm font-medium text-heading">
                       {rating.target?.title ?? (rating.targetType === 'QUIZ' ? 'Quiz' : 'Poll')}
                     </p>
-                    <p className="mt-0.5 text-xs text-zinc-400">
+                    <p className="mt-0.5 text-xs text-muted">
                       {rating.targetType === 'QUIZ' ? 'Quiz' : 'Poll'} · {formatDate(rating.createdAt)}
                     </p>
                   </div>
                   <RatingStars value={rating.score} size="md" />
                 </div>
-                {rating.review && <p className="mt-3 text-sm text-zinc-600">{rating.review}</p>}
+                {rating.review && <p className="mt-3 text-sm text-body">{rating.review}</p>}
               </div>
             ))}
           </div>

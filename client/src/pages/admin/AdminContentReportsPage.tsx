@@ -48,20 +48,20 @@ export function AdminContentReportsPage() {
         ]}
         head={['Reason', 'Target', 'Details', 'Status', 'Filed', '']}
         renderRow={(report) => (
-          <tr key={report._id} className="hover:bg-zinc-50/70">
+          <tr key={report._id} className="hover:bg-surface-muted/70">
             <Td>
               <Badge tone={report.status === 'OPEN' ? 'warning' : report.status === 'RESOLVED' ? 'success' : 'neutral'}>
                 {REPORT_REASON_LABELS[report.reason] ?? report.reason}
               </Badge>
             </Td>
-            <Td className="text-zinc-500">
+            <Td className="text-body">
               {report.targetType} · {report.targetId.slice(-6)}
             </Td>
-            <Td className="max-w-[220px] truncate text-zinc-500">{report.details || '—'}</Td>
+            <Td className="max-w-[220px] truncate text-body">{report.details || '—'}</Td>
             <Td>
               <Badge tone={report.status === 'OPEN' ? 'danger' : 'neutral'}>{report.status}</Badge>
             </Td>
-            <Td className="text-zinc-500">{formatDate(report.createdAt)}</Td>
+            <Td className="text-body">{formatDate(report.createdAt)}</Td>
             <Td>
               <Button size="sm" variant="outline" onClick={() => setTarget(report)}>
                 Resolve
@@ -83,14 +83,14 @@ export function AdminContentReportsPage() {
           searchPlaceholder="Search poll reports…"
           head={['Reason', 'Target', 'Details', 'Status', 'Filed', '']}
           renderRow={(report) => (
-            <tr key={report._id} className="hover:bg-zinc-50/70">
+            <tr key={report._id} className="hover:bg-surface-muted/70">
               <Td>{REPORT_REASON_LABELS[report.reason] ?? report.reason}</Td>
-              <Td className="text-zinc-500">POLL · {report.targetId.slice(-6)}</Td>
-              <Td className="max-w-[220px] truncate text-zinc-500">{report.details || '—'}</Td>
+              <Td className="text-body">POLL · {report.targetId.slice(-6)}</Td>
+              <Td className="max-w-[220px] truncate text-body">{report.details || '—'}</Td>
               <Td>
                 <Badge tone={report.status === 'OPEN' ? 'danger' : 'neutral'}>{report.status}</Badge>
               </Td>
-              <Td className="text-zinc-500">{formatDate(report.createdAt)}</Td>
+              <Td className="text-body">{formatDate(report.createdAt)}</Td>
               <Td>
                 <Button size="sm" variant="outline" onClick={() => setTarget(report)}>
                   Resolve

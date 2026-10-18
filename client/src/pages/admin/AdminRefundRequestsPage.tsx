@@ -48,17 +48,17 @@ export function AdminRefundRequestsPage() {
         }}
         head={['Type', 'User', 'Activity', 'Amount', 'Reason', 'Requested', '']}
         renderRow={(request) => (
-          <tr key={`${request.kind}-${request.id}`} className="hover:bg-zinc-50/70">
+          <tr key={`${request.kind}-${request.id}`} className="hover:bg-surface-muted/70">
             <Td>
               <Badge tone="info">
                 <RotateCcw className="h-3 w-3" /> {request.kind.replace('_', ' ').toLowerCase()}
               </Badge>
             </Td>
-            <Td className="text-zinc-700">{request.user?.name ?? '—'}</Td>
-            <Td className="max-w-[180px] truncate text-zinc-500">{request.activity?.title ?? '—'}</Td>
-            <Td className="font-medium text-zinc-900">{formatNumber(request.amount)} QCoins</Td>
-            <Td className="max-w-[180px] truncate text-zinc-500">{request.reason}</Td>
-            <Td className="text-zinc-500">{formatDate(request.createdAt)}</Td>
+            <Td className="text-body">{request.user?.name ?? '—'}</Td>
+            <Td className="max-w-[180px] truncate text-body">{request.activity?.title ?? '—'}</Td>
+            <Td className="font-medium text-heading">{formatNumber(request.amount)} QCoins</Td>
+            <Td className="max-w-[180px] truncate text-body">{request.reason}</Td>
+            <Td className="text-body">{formatDate(request.createdAt)}</Td>
             <Td>
               <div className="flex gap-1.5">
                 <Button

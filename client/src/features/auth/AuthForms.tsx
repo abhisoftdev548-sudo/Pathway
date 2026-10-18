@@ -37,8 +37,8 @@ export function LoginPage() {
   return (
     <Card>
       <CardBody className="px-6 py-7">
-        <h1 className="text-xl font-semibold text-zinc-900">Sign in</h1>
-        <p className="mt-1 text-sm text-zinc-500">Access your quizzes, polls, and QCoin wallet.</p>
+        <h1 className="text-xl font-semibold text-heading">Sign in</h1>
+        <p className="mt-1 text-sm text-body">Access your quizzes, polls, and QCoin wallet.</p>
         <form onSubmit={onSubmit} className="mt-6 space-y-4">
           <Input
             label="Email"
@@ -57,7 +57,7 @@ export function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+            <p className="rounded-lg bg-danger-soft px-3 py-2 text-sm text-danger" role="alert">
               {error}
             </p>
           )}
@@ -69,7 +69,7 @@ export function LoginPage() {
           <Link to="/forgot-password" className="text-brand-600 hover:text-brand-700">
             Forgot password?
           </Link>
-          <Link to="/register" className="text-zinc-600 hover:text-zinc-900">
+          <Link to="/register" className="text-body hover:text-heading">
             Create an account
           </Link>
         </div>
@@ -110,8 +110,8 @@ export function RegisterPage() {
   return (
     <Card>
       <CardBody className="px-6 py-7">
-        <h1 className="text-xl font-semibold text-zinc-900">Create your account</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-xl font-semibold text-heading">Create your account</h1>
+        <p className="mt-1 text-sm text-body">
           Join QuizSphere to create quizzes and polls, participate, and earn QCoins.
         </p>
         <form onSubmit={onSubmit} className="mt-6 space-y-4">
@@ -134,7 +134,7 @@ export function RegisterPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+            <p className="rounded-lg bg-danger-soft px-3 py-2 text-sm text-danger" role="alert">
               {error}
             </p>
           )}
@@ -142,7 +142,7 @@ export function RegisterPage() {
             Create account
           </Button>
         </form>
-        <p className="mt-4 text-center text-sm text-zinc-500">
+        <p className="mt-4 text-center text-sm text-body">
           Already registered?{' '}
           <Link to="/login" className="text-brand-600 hover:text-brand-700">
             Sign in
@@ -178,21 +178,21 @@ export function ForgotPasswordPage() {
   return (
     <Card>
       <CardBody className="px-6 py-7">
-        <h1 className="text-xl font-semibold text-zinc-900">Reset your password</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-xl font-semibold text-heading">Reset your password</h1>
+        <p className="mt-1 text-sm text-body">
           Enter your account email and we&apos;ll issue a reset link.
         </p>
         {sent ? (
-          <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+          <div className="mt-6 rounded-lg border border-success-soft bg-success-soft p-4">
             <div className="flex items-start gap-3">
-              <MailCheck className="mt-0.5 h-5 w-5 text-emerald-600" />
-              <div className="text-sm text-emerald-800">
+              <MailCheck className="mt-0.5 h-5 w-5 text-success" />
+              <div className="text-sm text-success">
                 <p className="font-medium">Check your inbox</p>
-                <p className="mt-1 text-emerald-700">
+                <p className="mt-1 text-success">
                   If an account exists for {email}, a reset link is on its way.
                 </p>
                 {devToken && (
-                  <p className="mt-2 break-all rounded bg-white/70 p-2 text-xs text-emerald-900">
+                  <p className="mt-2 break-all rounded bg-white/70 p-2 text-xs text-success">
                     Development mode — use this token:{' '}
                     <Link to={`/reset-password?token=${devToken}`} className="font-medium underline">
                       open reset form
@@ -258,9 +258,9 @@ export function ResetPasswordPage() {
   return (
     <Card>
       <CardBody className="px-6 py-7">
-        <h1 className="text-xl font-semibold text-zinc-900">Choose a new password</h1>
+        <h1 className="text-xl font-semibold text-heading">Choose a new password</h1>
         {!token && (
-          <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          <p className="mt-2 rounded-lg bg-warning-soft px-3 py-2 text-sm text-warning">
             This page needs a valid reset token. Request a new link first.
           </p>
         )}
@@ -282,7 +282,7 @@ export function ResetPasswordPage() {
             onChange={(e) => setConfirm(e.target.value)}
           />
           {error && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+            <p className="rounded-lg bg-danger-soft px-3 py-2 text-sm text-danger" role="alert">
               {error}
             </p>
           )}

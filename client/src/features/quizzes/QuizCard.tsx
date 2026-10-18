@@ -10,7 +10,7 @@ export function QuizCard({ quiz, showStatus = false }: { quiz: QuizSummary; show
   return (
     <Link to={`/quizzes/${quiz.slug}`} className="surface group flex flex-col p-5 transition-shadow hover:shadow-pop">
       <div className="flex items-start justify-between gap-3">
-        <h3 className="text-base font-semibold text-zinc-900 group-hover:text-brand-700">{quiz.title}</h3>
+        <h3 className="text-base font-semibold text-heading group-hover:text-brand-700">{quiz.title}</h3>
         {showStatus && quiz.status ? (
           <B tone={statusTone(quiz.status)}>{STATUS_LABELS[quiz.status] ?? quiz.status}</B>
         ) : (
@@ -22,17 +22,17 @@ export function QuizCard({ quiz, showStatus = false }: { quiz: QuizSummary; show
         )}
       </div>
 
-      {quiz.description && <p className="mt-2 line-clamp-2 text-sm text-zinc-500">{quiz.description}</p>}
+      {quiz.description && <p className="mt-2 line-clamp-2 text-sm text-body">{quiz.description}</p>}
 
       <div className="mt-3 flex flex-wrap gap-1.5">
         {(quiz.tags ?? []).slice(0, 4).map((tag) => (
-          <span key={tag} className="rounded-md bg-zinc-100 px-1.5 py-0.5 text-[11px] text-zinc-500">
+          <span key={tag} className="rounded-md bg-surface-muted px-1.5 py-0.5 text-[11px] text-body">
             {tag}
           </span>
         ))}
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-t border-zinc-100 pt-3 text-xs text-zinc-400">
+      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-t border-line pt-3 text-xs text-muted">
         {quiz.creator?.name && <span>by {quiz.creator.name}</span>}
         {(quiz.stats?.attemptsCount ?? 0) > 0 && (
           <span className="inline-flex items-center gap-1">
@@ -43,12 +43,12 @@ export function QuizCard({ quiz, showStatus = false }: { quiz: QuizSummary; show
           <RatingStars value={quiz.stats?.ratingBayes ?? 0} count={quiz.stats?.ratingCount} />
         )}
         {(quiz.entryFee ?? 0) > 0 && (
-          <span className="inline-flex items-center gap-1 text-amber-600">
+          <span className="inline-flex items-center gap-1 text-warning">
             <Coins className="h-3.5 w-3.5" /> {quiz.entryFee} entry
           </span>
         )}
         {(quiz.reward ?? 0) > 0 && (
-          <span className="inline-flex items-center gap-1 text-emerald-600">
+          <span className="inline-flex items-center gap-1 text-success">
             <Coins className="h-3.5 w-3.5" /> {quiz.reward} reward
           </span>
         )}

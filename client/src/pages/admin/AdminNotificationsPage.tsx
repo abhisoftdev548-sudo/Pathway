@@ -111,12 +111,12 @@ export function AdminNotificationsPage() {
                         key={t.key}
                         type="button"
                         onClick={() => setTemplate(t)}
-                        className="flex w-full items-center gap-3 rounded-lg border border-zinc-100 px-4 py-2.5 text-left hover:border-brand-200 hover:bg-brand-50/40"
+                        className="flex w-full items-center gap-3 rounded-lg border border-line px-4 py-2.5 text-left hover:border-brand-200 hover:bg-brand-50/40"
                       >
-                        <Megaphone className="h-4 w-4 text-zinc-400" />
+                        <Megaphone className="h-4 w-4 text-muted" />
                         <div>
-                          <p className="text-sm font-medium text-zinc-900">{t.title}</p>
-                          <p className="text-xs text-zinc-400">{t.key}</p>
+                          <p className="text-sm font-medium text-heading">{t.title}</p>
+                          <p className="text-xs text-muted">{t.key}</p>
                         </div>
                       </button>
                     ))}

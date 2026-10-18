@@ -47,15 +47,15 @@ export function AdminUserReportsPage() {
         ]}
         head={['Reason', 'Reported user', 'Reporter', 'Details', 'Status', '']}
         renderRow={(report) => (
-          <tr key={report._id} className="hover:bg-zinc-50/70">
+          <tr key={report._id} className="hover:bg-surface-muted/70">
             <Td>
               <Badge tone={report.status === 'OPEN' ? 'warning' : 'neutral'}>
                 {REPORT_REASON_LABELS[report.reason] ?? report.reason}
               </Badge>
             </Td>
-            <Td className="text-zinc-500">{report.targetId.slice(-8)}</Td>
-            <Td className="text-zinc-500">{report.reporter?.name ?? '—'}</Td>
-            <Td className="max-w-[200px] truncate text-zinc-500">{report.details || '—'}</Td>
+            <Td className="text-body">{report.targetId.slice(-8)}</Td>
+            <Td className="text-body">{report.reporter?.name ?? '—'}</Td>
+            <Td className="max-w-[200px] truncate text-body">{report.details || '—'}</Td>
             <Td>
               <Badge tone={report.status === 'OPEN' ? 'danger' : 'neutral'}>{report.status}</Badge>
             </Td>

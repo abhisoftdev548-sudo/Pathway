@@ -60,8 +60,8 @@ export function ProfilePage() {
                 <div className="flex items-center gap-4">
                   <Avatar name={user?.name ?? 'User'} src={user?.avatar?.url} size="lg" />
                   <div>
-                    <p className="text-sm font-medium text-zinc-900">Profile photo</p>
-                    <p className="text-xs text-zinc-500">
+                    <p className="text-sm font-medium text-heading">Profile photo</p>
+                    <p className="text-xs text-body">
                       Optional. Image storage requires a Cloudinary-enabled deployment.
                     </p>
                   </div>
@@ -94,29 +94,29 @@ export function ProfilePage() {
               {reputation && reputation.community.count + reputation.adminQuality.count + reputation.publishedCount > 0 ? (
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
-                    <p className="text-xs text-zinc-500">Community rating</p>
+                    <p className="text-xs text-body">Community rating</p>
                     <div className="mt-1 flex items-center gap-2">
                       <RatingStars value={reputation.community.score} count={reputation.community.count} size="md" />
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs text-zinc-500">Admin quality rating</p>
-                    <p className="mt-1 text-lg font-semibold text-zinc-900">
+                    <p className="text-xs text-body">Admin quality rating</p>
+                    <p className="mt-1 text-lg font-semibold text-heading">
                       {reputation.adminQuality.score !== null
                         ? reputation.adminQuality.score.toFixed(1)
                         : 'Not rated yet'}
                     </p>
                     {reputation.adminQuality.count > 0 && (
-                      <p className="text-xs text-zinc-400">{reputation.adminQuality.count} moderation reviews</p>
+                      <p className="text-xs text-muted">{reputation.adminQuality.count} moderation reviews</p>
                     )}
                   </div>
                   <div>
-                    <p className="text-xs text-zinc-500">Published content</p>
-                    <p className="mt-1 text-lg font-semibold text-zinc-900">{formatNumber(reputation.publishedCount)}</p>
+                    <p className="text-xs text-body">Published content</p>
+                    <p className="mt-1 text-lg font-semibold text-heading">{formatNumber(reputation.publishedCount)}</p>
                   </div>
                 </div>
               ) : (
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-body">
                   Reputation data appears after your first published content receives feedback.
                 </p>
               )}
@@ -130,8 +130,8 @@ export function ProfilePage() {
               <div className="flex items-center gap-4">
                 <Avatar name={user?.name ?? 'User'} src={user?.avatar?.url} size="lg" />
                 <div>
-                  <p className="text-base font-semibold text-zinc-900">{user?.name}</p>
-                  <p className="text-sm text-zinc-500">{user?.email}</p>
+                  <p className="text-base font-semibold text-heading">{user?.name}</p>
+                  <p className="text-sm text-body">{user?.email}</p>
                   <div className="mt-1.5 flex items-center gap-2">
                     {user?.role === 'ADMIN' && (
                       <Badge tone="brand">
@@ -142,14 +142,14 @@ export function ProfilePage() {
                   </div>
                 </div>
               </div>
-              <dl className="mt-5 space-y-2 border-t border-zinc-100 pt-4 text-sm">
+              <dl className="mt-5 space-y-2 border-t border-line pt-4 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Joined</dt>
-                  <dd className="font-medium text-zinc-900">{formatDate(user?.createdAt)}</dd>
+                  <dt className="text-body">Joined</dt>
+                  <dd className="font-medium text-heading">{formatDate(user?.createdAt)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">QCoin balance</dt>
-                  <dd className="font-medium text-zinc-900">{formatNumber(user?.wallet?.balance ?? 0)}</dd>
+                  <dt className="text-body">QCoin balance</dt>
+                  <dd className="font-medium text-heading">{formatNumber(user?.wallet?.balance ?? 0)}</dd>
                 </div>
               </dl>
             </CardBody>

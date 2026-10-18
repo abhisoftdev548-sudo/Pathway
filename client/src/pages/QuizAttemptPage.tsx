@@ -127,8 +127,8 @@ export function QuizAttemptPage() {
             <Badge tone="brand" className="mb-3">
               {QUESTION_TYPE_LABELS[QUESTION_TYPES.SINGLE_CHOICE] && 'Ready when you are'}
             </Badge>
-            <h1 className="text-xl font-semibold text-zinc-900">{quiz.title}</h1>
-            <p className="mt-2 text-sm text-zinc-500">
+            <h1 className="text-xl font-semibold text-heading">{quiz.title}</h1>
+            <p className="mt-2 text-sm text-body">
               {quizData.questionCount} questions · {formatNumber(quizData.totalPoints)} points ·{' '}
               {(quiz as unknown as { timeLimitMinutes?: number }).timeLimitMinutes
                 ? `${(quiz as unknown as { timeLimitMinutes?: number }).timeLimitMinutes} minute limit`
@@ -136,32 +136,32 @@ export function QuizAttemptPage() {
             </p>
 
             {(entryFee > 0 || (quiz.reward ?? 0) > 0) && (
-              <div className="mt-5 space-y-2 rounded-lg border border-zinc-100 p-4 text-sm">
+              <div className="mt-5 space-y-2 rounded-lg border border-line p-4 text-sm">
                 {entryFee > 0 && (
-                  <p className="flex items-center gap-2 text-zinc-700">
-                    <Coins className="h-4 w-4 text-amber-500" />
+                  <p className="flex items-center gap-2 text-body">
+                    <Coins className="h-4 w-4 text-warning" />
                     Entry fee: <strong>{formatNumber(entryFee)} QCoins</strong> — deducted when you start.
                   </p>
                 )}
                 {(quiz.reward ?? 0) > 0 && (
-                  <p className="flex items-center gap-2 text-zinc-700">
-                    <Coins className="h-4 w-4 text-emerald-500" />
+                  <p className="flex items-center gap-2 text-body">
+                    <Coins className="h-4 w-4 text-success" />
                     Reward: <strong>{formatNumber(quiz.reward)} QCoins</strong> — paid after a verified pass.
                   </p>
                 )}
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-muted">
                   Refunds apply if the quiz is cancelled or you abandon before submitting. QCoins have no cash value.
                 </p>
               </div>
             )}
 
             {entryFee > 0 && (
-              <label className="mt-4 flex items-start gap-2.5 text-sm text-zinc-600">
+              <label className="mt-4 flex items-start gap-2.5 text-sm text-body">
                 <input
                   type="checkbox"
                   checked={feeAccepted}
                   onChange={(e) => setFeeAccepted(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-zinc-300 text-brand-600"
+                  className="mt-0.5 h-4 w-4 rounded border-line-strong text-brand-600"
                 />
                 I understand this attempt costs {formatNumber(entryFee)} QCoins.
               </label>
@@ -180,7 +180,7 @@ export function QuizAttemptPage() {
                 Start attempt
               </Button>
             </div>
-            {!user && <p className="mt-3 text-xs text-red-500">You must be signed in.</p>}
+            {!user && <p className="mt-3 text-xs text-danger">You must be signed in.</p>}
           </CardBody>
         </Card>
       </div>
@@ -197,8 +197,8 @@ export function QuizAttemptPage() {
       <div className="mb-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-sm font-medium text-zinc-900">{quiz.title}</p>
-            <p className="text-xs text-zinc-500">
+            <p className="text-sm font-medium text-heading">{quiz.title}</p>
+            <p className="text-xs text-body">
               Question {current + 1} of {questions.length} · {answeredCount} answered
             </p>
           </div>
@@ -206,7 +206,7 @@ export function QuizAttemptPage() {
             <div
               className={cn(
                 'flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium',
-                secondsLeft < 60 ? 'bg-red-50 text-red-700' : 'bg-zinc-100 text-zinc-700'
+                secondsLeft < 60 ? 'bg-danger-soft text-danger' : 'bg-surface-muted text-body'
               )}
               aria-live="polite"
             >
@@ -233,13 +233,13 @@ export function QuizAttemptPage() {
             <CardBody className="p-6">
               <div className="flex items-start justify-between gap-3">
                 <Badge tone="info">{QUESTION_TYPE_LABELS[question.type as keyof typeof QUESTION_TYPE_LABELS] ?? question.type}</Badge>
-                <span className="text-xs text-zinc-400">{question.points} pt{question.points !== 1 ? 's' : ''}</span>
+                <span className="text-xs text-muted">{question.points} pt{question.points !== 1 ? 's' : ''}</span>
               </div>
-              <h2 className="mt-4 text-lg font-medium text-zinc-900">{question.text}</h2>
+              <h2 className="mt-4 text-lg font-medium text-heading">{question.text}</h2>
 
               {question.hint && (
-                <p className="mt-2 flex items-start gap-1.5 text-xs text-zinc-500">
-                  <Lightbulb className="mt-0.5 h-3.5 w-3.5 text-amber-500" />
+                <p className="mt-2 flex items-start gap-1.5 text-xs text-body">
+                  <Lightbulb className="mt-0.5 h-3.5 w-3.5 text-warning" />
                   Hint: {question.hint}
                 </p>
               )}
@@ -296,7 +296,7 @@ export function QuizAttemptPage() {
               scored on the server.
             </p>
             {answeredCount < questions.length && (
-              <p className="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
+              <p className="rounded-lg bg-warning-soft px-3 py-2 text-xs text-warning">
                 Unanswered questions will be marked incorrect.
               </p>
             )}
@@ -344,13 +344,13 @@ function QuestionInput({
                   'flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm transition-colors',
                   selected
                     ? 'border-brand-500 bg-brand-50 text-brand-800'
-                    : 'border-zinc-200 hover:border-zinc-300'
+                    : 'border-line hover:border-line-strong'
                 )}
               >
                 <span
                   className={cn(
                     'flex h-4 w-4 shrink-0 items-center justify-center rounded-full border',
-                    selected ? 'border-brand-600 bg-brand-600' : 'border-zinc-300'
+                    selected ? 'border-brand-600 bg-brand-600' : 'border-line-strong'
                   )}
                 >
                   {selected && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
@@ -378,13 +378,13 @@ function QuestionInput({
                 }
                 className={cn(
                   'flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm transition-colors',
-                  checked ? 'border-brand-500 bg-brand-50 text-brand-800' : 'border-zinc-200 hover:border-zinc-300'
+                  checked ? 'border-brand-500 bg-brand-50 text-brand-800' : 'border-line hover:border-line-strong'
                 )}
               >
                 <span
                   className={cn(
                     'flex h-4 w-4 shrink-0 items-center justify-center rounded border',
-                    checked ? 'border-brand-600 bg-brand-600' : 'border-zinc-300'
+                    checked ? 'border-brand-600 bg-brand-600' : 'border-line-strong'
                   )}
                 >
                   {checked && <Check className="h-3 w-3 text-white" />}
@@ -393,7 +393,7 @@ function QuestionInput({
               </button>
             );
           })}
-          <p className="text-xs text-zinc-400">Select all that apply.</p>
+          <p className="text-xs text-muted">Select all that apply.</p>
         </div>
       );
     }

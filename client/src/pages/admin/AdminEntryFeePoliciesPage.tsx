@@ -88,21 +88,21 @@ export function AdminEntryFeePoliciesPage() {
           <Card>
             <CardHeader title="Refund rules (enforced by the server)" />
             <CardBody>
-              <ul className="space-y-3 text-sm text-zinc-600">
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Abandoned attempts</strong> — a charged fee is refunded when an
+              <ul className="space-y-3 text-sm text-body">
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Abandoned attempts</strong> — a charged fee is refunded when an
                   attempt is abandoned before submission.
                 </li>
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Platform cancellations</strong> — rejecting or unpublishing content
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Platform cancellations</strong> — rejecting or unpublishing content
                   after fees were charged triggers automatic refunds.
                 </li>
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Completed participation</strong> — fees for completed attempts and
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Completed participation</strong> — fees for completed attempts and
                   votes are not refundable without an admin decision.
                 </li>
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Suspicious activity</strong> — flagged accounts cannot receive
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Suspicious activity</strong> — flagged accounts cannot receive
                   automatic refunds; each case is reviewed manually.
                 </li>
               </ul>

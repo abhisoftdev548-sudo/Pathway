@@ -114,21 +114,21 @@ export function AdminRewardConfigPage() {
           <Card>
             <CardHeader title="How rewards work" subtitle="Documented rules applied by the server." />
             <CardBody>
-              <ul className="space-y-3 text-sm text-zinc-600">
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Quiz rewards</strong> are paid only after a server-verified pass
+              <ul className="space-y-3 text-sm text-body">
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Quiz rewards</strong> are paid only after a server-verified pass
                   (or top-percent finish). Attempts pending manual review earn nothing until reviewed.
                 </li>
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Poll rewards</strong> are participation-based. An opinion poll has
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Poll rewards</strong> are participation-based. An opinion poll has
                   no correct answer, so option choice never affects eligibility.
                 </li>
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Anti-farming</strong>: payouts are idempotent per attempt/vote, and
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Anti-farming</strong>: payouts are idempotent per attempt/vote, and
                   suspicious reward velocity is flagged in Suspicious Transactions for manual review.
                 </li>
-                <li className="rounded-lg border border-zinc-100 px-4 py-3">
-                  <strong className="text-zinc-900">Cancellations</strong>: when content is rejected or unpublished
+                <li className="rounded-lg border border-line px-4 py-3">
+                  <strong className="text-heading">Cancellations</strong>: when content is rejected or unpublished
                   after fees were charged, entry fees are refunded automatically and rewards owed are reviewed.
                 </li>
               </ul>

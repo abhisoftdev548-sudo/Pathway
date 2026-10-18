@@ -40,7 +40,7 @@ export function DropdownMenu({
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label={label}
-        className="rounded-md p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700"
+        className="rounded-md p-1.5 text-muted hover:bg-surface-muted hover:text-body"
       >
         <MoreHorizontal className="h-4 w-4" />
       </button>
@@ -52,7 +52,7 @@ export function DropdownMenu({
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -4, scale: 0.98 }}
             transition={{ duration: 0.12 }}
             className={cn(
-              'absolute z-50 mt-1 min-w-[168px] rounded-lg border border-zinc-200 bg-white py-1 shadow-pop',
+              'absolute z-50 mt-1 min-w-[168px] rounded-lg border border-line bg-white py-1 shadow-pop',
               align === 'right' ? 'right-0' : 'left-0'
             )}
             role="menu"
@@ -68,8 +68,8 @@ export function DropdownMenu({
                   setOpen(false);
                 }}
                 className={cn(
-                  'block w-full px-3.5 py-2 text-left text-sm hover:bg-zinc-50 disabled:opacity-40',
-                  item.danger ? 'text-red-600 hover:bg-red-50' : 'text-zinc-700'
+                  'block w-full px-3.5 py-2 text-left text-sm hover:bg-surface-muted disabled:opacity-40',
+                  item.danger ? 'text-danger hover:bg-danger-soft' : 'text-body'
                 )}
               >
                 {item.label}
@@ -94,7 +94,7 @@ export function SegmentedControl<T extends string>({
   className?: string;
 }) {
   return (
-    <div className={cn('inline-flex rounded-lg border border-zinc-200 bg-zinc-100/80 p-0.5', className)} role="tablist">
+    <div className={cn('inline-flex rounded-lg border border-line bg-surface-muted p-0.5', className)} role="tablist">
       {options.map((opt) => (
         <button
           key={opt.value}
@@ -104,7 +104,7 @@ export function SegmentedControl<T extends string>({
           onClick={() => onChange(opt.value)}
           className={cn(
             'rounded-md px-3 py-1.5 text-xs font-medium transition-colors',
-            value === opt.value ? 'bg-white text-zinc-900 shadow-sm' : 'text-zinc-500 hover:text-zinc-800'
+            value === opt.value ? 'bg-white text-heading shadow-sm' : 'text-body hover:text-heading'
           )}
         >
           {opt.label}

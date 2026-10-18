@@ -367,7 +367,7 @@ export function QuizBuilderPage() {
                 value={attemptsAllowed}
                 onChange={(e) => setAttemptsAllowed(Number(e.target.value))}
               />
-              <div className="rounded-lg bg-zinc-50 px-3 py-2.5 text-xs text-zinc-500">
+              <div className="rounded-lg bg-background px-3 py-2.5 text-xs text-body">
                 {entryFee > 0 || reward > 0 ? (
                   <>
                     This quiz is <strong>{entryFee > 0 ? 'paid entry' : 'free entry'}</strong> with{' '}
@@ -396,7 +396,7 @@ export function QuizBuilderPage() {
         {/* Questions */}
         <div className="space-y-4 lg:col-span-2">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-zinc-400">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
               Questions ({questions.length})
             </h2>
             <Select
@@ -422,7 +422,7 @@ export function QuizBuilderPage() {
           {questions.length === 0 && (
             <Card>
               <CardBody className="py-10 text-center">
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-body">
                   No questions yet. Add your first question using the dropdown above.
                 </p>
               </CardBody>
@@ -443,11 +443,11 @@ export function QuizBuilderPage() {
                   <CardHeader
                     title={
                       <span className="flex items-center gap-2">
-                        <GripVertical className="h-4 w-4 text-zinc-300" />
+                        <GripVertical className="h-4 w-4 text-muted" />
                         <Badge tone="info">
                           {QUESTION_TYPE_LABELS[question.type as keyof typeof QUESTION_TYPE_LABELS] ?? question.type}
                         </Badge>
-                        <span className="text-zinc-800">Question {index + 1}</span>
+                        <span className="text-heading">Question {index + 1}</span>
                       </span>
                     }
                     actions={
@@ -468,7 +468,7 @@ export function QuizBuilderPage() {
                           <Copy className="h-4 w-4" />
                         </Button>
                         <Button variant="ghost" size="sm" onClick={() => removeQuestion(index)} aria-label="Delete">
-                          <Trash2 className="h-4 w-4 text-red-500" />
+                          <Trash2 className="h-4 w-4 text-danger" />
                         </Button>
                       </div>
                     }
@@ -523,39 +523,39 @@ export function QuizBuilderPage() {
       >
         <div className="space-y-4">
           <div>
-            <h3 className="text-lg font-semibold text-zinc-900">{title || 'Untitled quiz'}</h3>
-            {description && <p className="mt-1 text-sm text-zinc-500">{description}</p>}
-            <p className="mt-2 text-xs text-zinc-400">
+            <h3 className="text-lg font-semibold text-heading">{title || 'Untitled quiz'}</h3>
+            {description && <p className="mt-1 text-sm text-body">{description}</p>}
+            <p className="mt-2 text-xs text-muted">
               {questions.length} questions · passing score {passingScore}%
               {timeLimitMinutes > 0 ? ` · ${timeLimitMinutes} minute limit` : ''}
             </p>
           </div>
           {questions.map((q, i) => (
-            <div key={q.id} className="rounded-lg border border-zinc-100 p-4">
-              <p className="text-sm font-medium text-zinc-900">
-                {i + 1}. {q.text || <em className="text-zinc-400">(empty question)</em>}
+            <div key={q.id} className="rounded-lg border border-line p-4">
+              <p className="text-sm font-medium text-heading">
+                {i + 1}. {q.text || <em className="text-muted">(empty question)</em>}
               </p>
               {(q.type === QUESTION_TYPES.SINGLE_CHOICE || q.type === QUESTION_TYPES.MULTIPLE_CHOICE) && (
                 <ul className="mt-2 space-y-1">
                   {(q.options ?? []).filter((o) => o.text).map((o) => (
-                    <li key={o.id} className="text-sm text-zinc-600">
+                    <li key={o.id} className="text-sm text-body">
                       • {o.text}
                     </li>
                   ))}
                 </ul>
               )}
               {q.type === QUESTION_TYPES.TRUE_FALSE && (
-                <p className="mt-2 text-sm text-zinc-600">True / False</p>
+                <p className="mt-2 text-sm text-body">True / False</p>
               )}
               {q.type === QUESTION_TYPES.FILL_BLANK && (
-                <p className="mt-2 text-sm italic text-zinc-500">Short text answer</p>
+                <p className="mt-2 text-sm italic text-body">Short text answer</p>
               )}
               {q.type === QUESTION_TYPES.SHORT_ANSWER && (
-                <p className="mt-2 text-sm italic text-zinc-500">Long text answer</p>
+                <p className="mt-2 text-sm italic text-body">Long text answer</p>
               )}
             </div>
           ))}
-          {questions.length === 0 && <p className="text-sm text-zinc-400">No questions to preview yet.</p>}
+          {questions.length === 0 && <p className="text-sm text-muted">No questions to preview yet.</p>}
         </div>
       </Modal>
 
@@ -621,7 +621,7 @@ function QuestionEditor({
                   );
                   onChange({ options: next });
                 }}
-                className={single ? 'h-4 w-4 border-zinc-300 text-brand-600' : 'h-4 w-4 rounded border-zinc-300 text-brand-600'}
+                className={single ? 'h-4 w-4 border-line-strong text-brand-600' : 'h-4 w-4 rounded border-line-strong text-brand-600'}
                 aria-label={`Mark option ${i + 1} correct`}
               />
               <input
@@ -638,7 +638,7 @@ function QuestionEditor({
               <button
                 type="button"
                 onClick={() => onChange({ options: options.filter((_, j) => j !== i) })}
-                className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                className="rounded p-1.5 text-muted hover:bg-surface-muted hover:text-danger"
                 aria-label="Remove option"
               >
                 <X className="h-4 w-4" />
@@ -698,7 +698,7 @@ function QuestionEditor({
               <button
                 type="button"
                 onClick={() => onChange({ correctAnswers: answers.filter((_, j) => j !== i) })}
-                className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                className="rounded p-1.5 text-muted hover:bg-surface-muted hover:text-danger"
                 aria-label="Remove answer"
               >
                 <X className="h-4 w-4" />
@@ -792,7 +792,7 @@ function QuestionEditor({
                     onClick={() =>
                       onChange({ evaluationRules: { ...rules, keywords: (rules.keywords ?? []).filter((_, j) => j !== i) } })
                     }
-                    className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                    className="rounded p-1.5 text-muted hover:bg-surface-muted hover:text-danger"
                     aria-label="Remove keyword"
                   >
                     <X className="h-4 w-4" />

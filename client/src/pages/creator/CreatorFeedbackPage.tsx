@@ -53,8 +53,8 @@ export function CreatorFeedbackPage() {
                   <div className="flex items-center gap-3">
                     <Avatar name={rating.user?.name ?? 'Member'} src={rating.user?.avatar?.url} size="sm" />
                     <div>
-                      <p className="text-sm font-medium text-zinc-900">{rating.user?.name ?? 'Member'}</p>
-                      <p className="text-xs text-zinc-400">
+                      <p className="text-sm font-medium text-heading">{rating.user?.name ?? 'Member'}</p>
+                      <p className="text-xs text-muted">
                         on{' '}
                         {rating.target?.title ?? (rating.targetType === 'QUIZ' ? 'a quiz' : 'a poll')} ·{' '}
                         {formatDate(rating.createdAt)}
@@ -63,7 +63,7 @@ export function CreatorFeedbackPage() {
                   </div>
                   <RatingStars value={rating.score} size="md" />
                 </div>
-                {rating.review && <p className="mt-3 text-sm text-zinc-600">{rating.review}</p>}
+                {rating.review && <p className="mt-3 text-sm text-body">{rating.review}</p>}
               </div>
             ))}
           </div>

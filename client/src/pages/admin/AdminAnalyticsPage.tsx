@@ -166,23 +166,23 @@ export function AdminAnalyticsPage() {
               <CardBody>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">Quizzes</p>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Quizzes</p>
                     <ul className="space-y-1.5">
                       {(data?.quizStatuses ?? []).map((row) => (
                         <li key={row._id} className="flex justify-between text-sm">
-                          <span className="text-zinc-600">{row._id.toLowerCase().replace('_', ' ')}</span>
-                          <span className="font-medium text-zinc-900">{formatNumber(row.count)}</span>
+                          <span className="text-body">{row._id.toLowerCase().replace('_', ' ')}</span>
+                          <span className="font-medium text-heading">{formatNumber(row.count)}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">Polls</p>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Polls</p>
                     <ul className="space-y-1.5">
                       {(data?.pollStatuses ?? []).map((row) => (
                         <li key={row._id} className="flex justify-between text-sm">
-                          <span className="text-zinc-600">{row._id.toLowerCase().replace('_', ' ')}</span>
-                          <span className="font-medium text-zinc-900">{formatNumber(row.count)}</span>
+                          <span className="text-body">{row._id.toLowerCase().replace('_', ' ')}</span>
+                          <span className="font-medium text-heading">{formatNumber(row.count)}</span>
                         </li>
                       ))}
                     </ul>

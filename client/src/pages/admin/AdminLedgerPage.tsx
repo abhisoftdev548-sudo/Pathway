@@ -89,11 +89,11 @@ export function AdminLedgerPage() {
           <>
             <Table head={['Tx ID', 'User', 'Type', 'Amount', 'Balance after', 'Reason', 'When']}>
               {items.map((tx: LedgerDto) => (
-                <tr key={tx._id} className="hover:bg-zinc-50/70">
+                <tr key={tx._id} className="hover:bg-surface-muted/70">
                   <Td>
-                    <span className="font-mono text-xs text-zinc-500">{tx.txId}</span>
+                    <span className="font-mono text-xs text-body">{tx.txId}</span>
                   </Td>
-                  <Td className="text-zinc-700">{tx.user?.name ?? '—'}</Td>
+                  <Td className="text-body">{tx.user?.name ?? '—'}</Td>
                   <Td>
                     <Badge
                       tone={tx.type === 'REWARD' ? 'success' : tx.type === 'ADJUSTMENT' ? 'warning' : 'neutral'}
@@ -102,14 +102,14 @@ export function AdminLedgerPage() {
                     </Badge>
                   </Td>
                   <Td>
-                    <span className={tx.amount > 0 ? 'font-medium text-emerald-600' : 'font-medium text-zinc-800'}>
+                    <span className={tx.amount > 0 ? 'font-medium text-success' : 'font-medium text-heading'}>
                       {tx.amount > 0 ? '+' : ''}
                       {formatNumber(tx.amount)}
                     </span>
                   </Td>
                   <Td>{formatNumber(tx.balanceAfter)}</Td>
-                  <Td className="max-w-[200px] truncate text-zinc-500">{tx.reason || '—'}</Td>
-                  <Td className="text-zinc-500">{formatDate(tx.createdAt)}</Td>
+                  <Td className="max-w-[200px] truncate text-body">{tx.reason || '—'}</Td>
+                  <Td className="text-body">{formatDate(tx.createdAt)}</Td>
                 </tr>
               ))}
             </Table>

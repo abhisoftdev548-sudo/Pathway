@@ -16,11 +16,11 @@ export function Field({ label, error, hint, required, children }: FieldShellProp
       {label && (
         <label htmlFor={id} className="field-label">
           {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
+          {required && <span className="ml-0.5 text-danger">*</span>}
         </label>
       )}
       {children(id)}
-      {hint && !error && <p className="mt-1 text-xs text-zinc-500">{hint}</p>}
+      {hint && !error && <p className="mt-1 text-xs text-body">{hint}</p>}
       {error && <p className="field-error">{error}</p>}
     </div>
   );
@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
           <input
             ref={ref}
             id={id ?? fieldId}
-            className={cn('field-input', error && 'border-red-400 focus:border-red-500 focus:ring-red-500', className)}
+            className={cn('field-input', error && 'border-danger focus:border-danger focus:ring-danger', className)}
             aria-invalid={Boolean(error)}
             {...rest}
           />
@@ -54,7 +54,7 @@ export const Textarea = forwardRef<
         <textarea
           ref={ref}
           id={id ?? fieldId}
-          className={cn('field-input min-h-[88px]', error && 'border-red-400', className)}
+          className={cn('field-input min-h-[88px]', error && 'border-danger', className)}
           aria-invalid={Boolean(error)}
           {...rest}
         />
@@ -73,7 +73,7 @@ export const Select = forwardRef<
         <select
           ref={ref}
           id={id ?? fieldId}
-          className={cn('field-input appearance-none pr-8', error && 'border-red-400', className)}
+          className={cn('field-input appearance-none pr-8', error && 'border-danger', className)}
           aria-invalid={Boolean(error)}
           {...rest}
         >
@@ -96,14 +96,14 @@ export function Checkbox({
       <input
         id={id}
         type="checkbox"
-        className="mt-0.5 h-4 w-4 rounded border-zinc-300 text-brand-600 focus:ring-brand-500"
+        className="mt-0.5 h-4 w-4 rounded border-line-strong text-brand-600 focus:ring-brand-500"
         {...rest}
       />
       <div>
-        <label htmlFor={id} className="text-sm font-medium text-zinc-700">
+        <label htmlFor={id} className="text-sm font-medium text-body">
           {label}
         </label>
-        {description && <p className="text-xs text-zinc-500">{description}</p>}
+        {description && <p className="text-xs text-body">{description}</p>}
       </div>
     </div>
   );
@@ -126,10 +126,10 @@ export function Switch({
   return (
     <div className="flex items-start justify-between gap-4">
       <div>
-        <label htmlFor={id} className="text-sm font-medium text-zinc-700">
+        <label htmlFor={id} className="text-sm font-medium text-body">
           {label}
         </label>
-        {description && <p className="text-xs text-zinc-500">{description}</p>}
+        {description && <p className="text-xs text-body">{description}</p>}
       </div>
       <button
         id={id}
@@ -140,7 +140,7 @@ export function Switch({
         onClick={() => onChange(!checked)}
         className={cn(
           'relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors',
-          checked ? 'bg-brand-600' : 'bg-zinc-300',
+          checked ? 'bg-brand-600' : 'bg-line-strong',
           disabled && 'opacity-50'
         )}
       >

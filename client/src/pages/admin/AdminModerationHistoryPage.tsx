@@ -20,7 +20,7 @@ export function AdminModerationHistoryPage() {
       ]}
       head={['Action', 'Content', 'Reviewer', 'Quality', 'Notes', 'When']}
       renderRow={(review) => (
-        <tr key={review._id} className="hover:bg-zinc-50/70">
+        <tr key={review._id} className="hover:bg-surface-muted/70">
           <Td>
             <Badge
               tone={
@@ -36,13 +36,13 @@ export function AdminModerationHistoryPage() {
               {review.action}
             </Badge>
           </Td>
-          <Td className="text-zinc-500">
+          <Td className="text-body">
             {review.targetType} · {review.targetId.slice(-6)} (v{review.versionNumber ?? 1})
           </Td>
-          <Td className="text-zinc-500">{review.reviewer?.name ?? '—'}</Td>
+          <Td className="text-body">{review.reviewer?.name ?? '—'}</Td>
           <Td>{review.qualityRating ? `${review.qualityRating}/5` : '—'}</Td>
-          <Td className="max-w-[240px] truncate text-zinc-500">{review.notes || '—'}</Td>
-          <Td className="text-zinc-500">{formatDate(review.createdAt)}</Td>
+          <Td className="max-w-[240px] truncate text-body">{review.notes || '—'}</Td>
+          <Td className="text-body">{formatDate(review.createdAt)}</Td>
         </tr>
       )}
       emptyTitle="No moderation actions yet"

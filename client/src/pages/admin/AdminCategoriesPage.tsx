@@ -108,10 +108,10 @@ export function AdminCategoriesPage() {
             ) : (
               <Table head={['Name', 'Active', '']}>
                 {(data?.categories ?? []).map((category: CategoryDto) => (
-                  <tr key={category._id} className="hover:bg-zinc-50/70">
+                  <tr key={category._id} className="hover:bg-surface-muted/70">
                     <Td>
-                      <p className="font-medium text-zinc-900">{category.name}</p>
-                      {category.description && <p className="text-xs text-zinc-400">{category.description}</p>}
+                      <p className="font-medium text-heading">{category.name}</p>
+                      {category.description && <p className="text-xs text-muted">{category.description}</p>}
                     </Td>
                     <Td>
                       <Badge tone={category.isActive !== false ? 'success' : 'neutral'}>
@@ -124,7 +124,7 @@ export function AdminCategoriesPage() {
                         onClick={() =>
                           setDeleteTarget({ kind: 'category', id: category._id, name: category.name })
                         }
-                        className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                        className="rounded p-1.5 text-muted hover:bg-surface-muted hover:text-danger"
                         aria-label={`Delete ${category.name}`}
                       >
                         <Trash2 className="h-4 w-4" />
@@ -173,14 +173,14 @@ export function AdminCategoriesPage() {
             ) : (
               <Table head={['Name', 'Usage', '']}>
                 {(data?.tags ?? []).map((tag: TagDto) => (
-                  <tr key={tag._id} className="hover:bg-zinc-50/70">
-                    <Td className="font-medium text-zinc-900">{tag.name}</Td>
+                  <tr key={tag._id} className="hover:bg-surface-muted/70">
+                    <Td className="font-medium text-heading">{tag.name}</Td>
                     <Td>{formatNumber(tag.usageCount ?? 0)}</Td>
                     <Td>
                       <button
                         type="button"
                         onClick={() => setDeleteTarget({ kind: 'tag', id: tag._id, name: tag.name })}
-                        className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                        className="rounded p-1.5 text-muted hover:bg-surface-muted hover:text-danger"
                         aria-label={`Delete ${tag.name}`}
                       >
                         <Trash2 className="h-4 w-4" />

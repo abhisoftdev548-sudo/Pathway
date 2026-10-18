@@ -50,7 +50,7 @@ export function PublicProfilePage() {
         <div className="space-y-6 lg:col-span-2">
           {publishedQuizzes.length > 0 ? (
             <>
-              <h2 className="text-lg font-semibold text-zinc-900">Published quizzes</h2>
+              <h2 className="text-lg font-semibold text-heading">Published quizzes</h2>
               <div className="grid gap-5 sm:grid-cols-2">
                 {publishedQuizzes.map((quiz: QuizSummary) => (
                   <QuizCard key={quiz._id} quiz={quiz} />
@@ -60,7 +60,7 @@ export function PublicProfilePage() {
           ) : (
             <Card>
               <CardBody>
-                <p className="text-sm text-zinc-500">This creator has no published quizzes yet.</p>
+                <p className="text-sm text-body">This creator has no published quizzes yet.</p>
               </CardBody>
             </Card>
           )}
@@ -69,19 +69,19 @@ export function PublicProfilePage() {
         <div className="space-y-6">
           <Card>
             <CardBody>
-              <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">Creator stats</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-muted">Creator stats</p>
               <dl className="mt-3 space-y-2.5 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Published quizzes</dt>
-                  <dd className="font-medium text-zinc-900">{formatNumber(stats.publishedQuizzes)}</dd>
+                  <dt className="text-body">Published quizzes</dt>
+                  <dd className="font-medium text-heading">{formatNumber(stats.publishedQuizzes)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Published polls</dt>
-                  <dd className="font-medium text-zinc-900">{formatNumber(stats.publishedPolls)}</dd>
+                  <dt className="text-body">Published polls</dt>
+                  <dd className="font-medium text-heading">{formatNumber(stats.publishedPolls)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-500">Member since</dt>
-                  <dd className="font-medium text-zinc-900">{formatDate(profile.joinedAt)}</dd>
+                  <dt className="text-body">Member since</dt>
+                  <dd className="font-medium text-heading">{formatDate(profile.joinedAt)}</dd>
                 </div>
               </dl>
             </CardBody>
@@ -89,17 +89,17 @@ export function PublicProfilePage() {
 
           <Card>
             <CardBody>
-              <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">Reputation</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-muted">Reputation</p>
               <div className="mt-3 space-y-3">
                 <div>
-                  <p className="text-xs text-zinc-500">Community rating</p>
+                  <p className="text-xs text-body">Community rating</p>
                   <div className="mt-1">
                     <RatingStars value={reputation.community.score} count={reputation.community.count} size="md" />
                   </div>
                 </div>
                 {reputation.adminQuality.score !== null && (
                   <div>
-                    <p className="text-xs text-zinc-500">Admin quality rating</p>
+                    <p className="text-xs text-body">Admin quality rating</p>
                     <p className="mt-1">
                       <Badge tone="brand">{reputation.adminQuality.score.toFixed(1)} / 5</Badge>
                     </p>

@@ -103,8 +103,8 @@ function FilterChip({
       onClick={onClick}
       className={
         active
-          ? 'rounded-full bg-zinc-900 px-3.5 py-1.5 text-xs font-medium text-white'
-          : 'rounded-full border border-zinc-200 bg-white px-3.5 py-1.5 text-xs font-medium text-zinc-600 hover:border-zinc-300'
+          ? 'rounded-full bg-heading px-3.5 py-1.5 text-xs font-medium text-white'
+          : 'rounded-full border border-line bg-white px-3.5 py-1.5 text-xs font-medium text-body hover:border-line-strong'
       }
     >
       {children}

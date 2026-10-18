@@ -17,11 +17,11 @@ export function AdminQualityRatingsPage() {
       fetcher={(params) => endpoints.admin.qualityRatings(params)}
       head={['Content', 'Type', 'Creator', 'Quality rating', 'Rated']}
       renderRow={(row) => (
-        <tr key={`${row.targetType}-${row._id}`} className="hover:bg-zinc-50/70">
+        <tr key={`${row.targetType}-${row._id}`} className="hover:bg-surface-muted/70">
           <Td>
             <Link
               to={row.targetType === 'POLL' ? `/polls/${row.slug}` : `/quizzes/${row.slug}`}
-              className="font-medium text-zinc-900 hover:text-brand-700"
+              className="font-medium text-heading hover:text-brand-700"
             >
               {row.title}
             </Link>
@@ -29,13 +29,13 @@ export function AdminQualityRatingsPage() {
           <Td>
             <Badge tone="info">{row.targetType}</Badge>
           </Td>
-          <Td className="text-zinc-500">{row.creator?.name ?? '—'}</Td>
+          <Td className="text-body">{row.creator?.name ?? '—'}</Td>
           <Td>
             <Badge tone="brand">
               {row.moderation?.adminQualityRating ?? '—'} / 5
             </Badge>
           </Td>
-          <Td className="text-zinc-500">{formatDate(row.moderation?.lastReviewedAt)}</Td>
+          <Td className="text-body">{formatDate(row.moderation?.lastReviewedAt)}</Td>
         </tr>
       )}
       emptyTitle="No quality ratings yet"

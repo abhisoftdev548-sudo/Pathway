@@ -58,10 +58,10 @@ export function DashboardPage() {
     <div>
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-heading">
             Welcome back, {user?.name.split(' ')[0]}
           </h1>
-          <p className="mt-1 text-sm text-zinc-500">
+          <p className="mt-1 text-sm text-body">
             {counts.attempts > 0
               ? `You have completed ${formatNumber(counts.attempts)} attempt${counts.attempts === 1 ? '' : 's'} so far.`
               : 'Create content or take your first quiz to get started.'}
@@ -133,17 +133,17 @@ export function DashboardPage() {
                   <Link
                     key={attempt._id}
                     to={`/attempts/${attempt._id}`}
-                    className="flex items-center justify-between rounded-lg border border-zinc-100 px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
+                    className="flex items-center justify-between rounded-lg border border-line px-4 py-2.5 hover:border-brand-200 hover:bg-brand-50/40"
                   >
                     <div>
-                      <p className="text-sm font-medium text-zinc-900">{attempt.quiz?.title ?? 'Quiz'}</p>
-                      <p className="text-xs text-zinc-400">{formatRelative(attempt.createdAt)}</p>
+                      <p className="text-sm font-medium text-heading">{attempt.quiz?.title ?? 'Quiz'}</p>
+                      <p className="text-xs text-muted">{formatRelative(attempt.createdAt)}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge tone={attempt.passed ? 'success' : 'neutral'}>
                         {attempt.passed ? 'Passed' : 'Not passed'}
                       </Badge>
-                      <span className="text-sm font-semibold text-zinc-900">
+                      <span className="text-sm font-semibold text-heading">
                         {formatPercent(attempt.percentage ?? 0)}
                       </span>
                     </div>
@@ -182,11 +182,11 @@ export function DashboardPage() {
             <CardBody className="p-0">
               <Table head={['Type', 'When', 'Amount']}>
                 {data.recentTransactions.map((tx) => (
-                  <tr key={tx._id} className="hover:bg-zinc-50/70">
+                  <tr key={tx._id} className="hover:bg-surface-muted/70">
                     <Td>{TX_TYPE_LABELS[tx.type] ?? tx.type}</Td>
-                    <Td className="text-zinc-500">{formatDate(tx.createdAt)}</Td>
+                    <Td className="text-body">{formatDate(tx.createdAt)}</Td>
                     <Td>
-                      <span className={tx.amount > 0 ? 'font-medium text-emerald-600' : 'font-medium text-zinc-700'}>
+                      <span className={tx.amount > 0 ? 'font-medium text-success' : 'font-medium text-body'}>
                         {tx.amount > 0 ? '+' : ''}
                         {formatNumber(tx.amount)}
                       </span>
@@ -231,8 +231,8 @@ function QuickLink({
     <Link to={to} className="surface flex items-start gap-3 p-4 transition-shadow hover:shadow-pop">
       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600">{icon}</div>
       <div>
-        <p className="text-sm font-semibold text-zinc-900">{title}</p>
-        <p className="mt-0.5 text-xs text-zinc-500">{description}</p>
+        <p className="text-sm font-semibold text-heading">{title}</p>
+        <p className="mt-0.5 text-xs text-body">{description}</p>
       </div>
     </Link>
   );
