@@ -1,0 +1,11 @@
+import { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes, type SelectHTMLAttributes, type LabelHTMLAttributes } from 'react';
+import { cn } from '../../lib/utils';
+const base = 'w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-navy-950 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 disabled:opacity-60';
+export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(({ className, ...p }, r) => <input ref={r} className={cn(base, className)} {...p} />);
+Input.displayName = 'Input';
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<HTMLTextAreaElement>>(({ className, ...p }, r) => <textarea ref={r} className={cn(base, 'min-h-20', className)} {...p} />);
+Textarea.displayName = 'Textarea';
+export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSelectElement>>(({ className, ...p }, r) => <select ref={r} className={cn(base, 'appearance-none pr-8 cursor-pointer', className)} {...p} />);
+Select.displayName = 'Select';
+export const Label = ({ className, ...p }: LabelHTMLAttributes<HTMLLabelElement>) => <label className={cn('mb-1.5 block text-sm font-semibold text-navy-900', className)} {...p} />;
+export const FieldError = ({ children }: { children?: any }) => children ? <p className="mt-1 text-xs font-medium text-red-600">{children}</p> : null;
