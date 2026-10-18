@@ -1,0 +1,1 @@
+export { CreatorQuizzesPage } from './CreatorContentPages';
