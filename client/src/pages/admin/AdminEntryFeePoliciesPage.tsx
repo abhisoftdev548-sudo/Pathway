@@ -36,8 +36,9 @@ export function AdminEntryFeePoliciesPage() {
       endpoints.admin.updateSetting({
         key: 'economy_limits',
         value: {
-          ...((data?.items ?? []).find((s) => s.key === 'economy_limits')?.value as object),
+          // Preserve limits configured elsewhere (e.g. rewards) — merge, never clobber.
           ...((data?.defaults?.economy_limits ?? {}) as object),
+          ...(((data?.items ?? []).find((s) => s.key === 'economy_limits')?.value ?? {}) as object),
           MAX_ENTRY_FEE: maxEntryFee,
         },
         description: 'Platform entry fee limits',

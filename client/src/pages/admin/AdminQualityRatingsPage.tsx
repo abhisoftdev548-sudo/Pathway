@@ -19,7 +19,10 @@ export function AdminQualityRatingsPage() {
       renderRow={(row) => (
         <tr key={`${row.targetType}-${row._id}`} className="hover:bg-zinc-50/70">
           <Td>
-            <Link to={`/quizzes/${row.slug}`} className="font-medium text-zinc-900 hover:text-brand-700">
+            <Link
+              to={row.targetType === 'POLL' ? `/polls/${row.slug}` : `/quizzes/${row.slug}`}
+              className="font-medium text-zinc-900 hover:text-brand-700"
+            >
               {row.title}
             </Link>
           </Td>

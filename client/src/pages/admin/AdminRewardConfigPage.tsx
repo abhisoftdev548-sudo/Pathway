@@ -45,6 +45,9 @@ export function AdminRewardConfigPage() {
       endpoints.admin.updateSetting({
         key: 'economy_limits',
         value: {
+          // Preserve limits configured elsewhere (e.g. entry fees) — merge, never clobber.
+          ...((data?.defaults?.economy_limits ?? {}) as object),
+          ...(((data?.items ?? []).find((s) => s.key === 'economy_limits')?.value ?? {}) as object),
           MAX_REWARD_PER_PARTICIPANT: maxRewardPerParticipant,
           MAX_REWARD_POOL_PER_ACTIVITY: maxRewardPool,
           SIGNUP_BONUS: signupBonus,
