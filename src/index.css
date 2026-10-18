@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-ink antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-500/60 ring-offset-1 ring-offset-white;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-[-0.011em] text-ink;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-lg border border-line bg-surface shadow-card;
+  }
+
+  .surface-flush {
+    @apply border-line bg-surface;
+  }
+
+  .divider-y > * + * {
+    @apply border-t border-line;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[13px] font-medium text-ink-soft;
+  }
+
+  .hint {
+    @apply mt-1.5 text-xs text-ink-muted;
+  }
+
+  .input {
+    @apply block w-full rounded-md border border-line-strong bg-white px-3 py-2 text-[13px] text-ink
+           placeholder:text-ink-faint focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/25
+           disabled:cursor-not-allowed disabled:bg-canvas disabled:text-ink-muted;
+  }
+
+  .input-invalid {
+    @apply border-red-400 focus:border-red-500 focus:ring-red-500/25;
+  }
+
+  .link {
+    @apply text-brand-600 underline-offset-2 hover:underline;
+  }
+
+  .table-th {
+    @apply px-4 py-2.5 text-left text-2xs font-semibold uppercase tracking-wide text-ink-muted;
+  }
+
+  .table-td {
+    @apply px-4 py-3 align-middle text-[13px] text-ink-soft;
+  }
+
+  .skeleton {
+    @apply animate-pulse rounded bg-line/70;
+  }
+}
+
+/* Thin, unobtrusive scrollbars inside panels */
+.scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: #d3d6e0 transparent;
+}
+.scroll-area::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  background-color: #d9dce4;
+  border: 3px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
