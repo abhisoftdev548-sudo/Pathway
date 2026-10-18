@@ -26,7 +26,7 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
   const unread = notifications?.unreadCount ?? 0;
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-zinc-200/80 bg-white/90 px-4 backdrop-blur sm:px-6">
+    <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6">
       <button
         type="button"
         onClick={onOpenMobileNav}

@@ -66,9 +66,9 @@ export function Modal({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
-            className={cn('relative w-full rounded-xl bg-white shadow-pop', sizeClass)}
+            className={cn('relative w-full rounded-xl bg-white shadow-lg', sizeClass)}
           >
-            <div className="flex items-start justify-between gap-4 border-b border-zinc-100 px-5 py-4">
+            <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-5 py-4">
               <div>
                 <h2 className="text-base font-semibold text-zinc-900">{title}</h2>
                 {description && <p className="mt-0.5 text-sm text-zinc-500">{description}</p>}
@@ -76,14 +76,14 @@ export function Modal({
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600"
+                className="rounded p-1 text-zinc-400 hover:bg-gray-100 hover:text-zinc-600"
                 aria-label="Close dialog"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="max-h-[70vh] overflow-y-auto px-5 py-4">{children}</div>
-            {footer && <div className="flex justify-end gap-2 border-t border-zinc-100 px-5 py-4">{footer}</div>}
+            <div className="max-h-[75vh] overflow-y-auto px-5 py-4">{children}</div>
+            {footer && <div className="flex justify-end gap-2 border-t border-gray-200 px-5 py-4">{footer}</div>}
           </motion.div>
         </div>
       )}
@@ -133,18 +133,18 @@ export function Drawer({
             exit={reduceMotion ? { opacity: 0 } : { x: side === 'right' ? '100%' : '-100%' }}
             transition={{ type: 'tween', duration: 0.22, ease: 'easeOut' }}
             className={cn(
-              'absolute inset-y-0 flex flex-col bg-white shadow-pop',
+              'absolute inset-y-0 flex flex-col bg-slate-900 shadow-lg',
               side === 'right' ? 'right-0' : 'left-0',
               width
             )}
           >
             {title && (
-              <div className="flex items-center justify-between border-b border-zinc-100 px-4 py-3">
-                <h2 className="text-sm font-semibold text-zinc-900">{title}</h2>
+              <div className="flex items-center justify-between border-b border-slate-700 px-4 py-3">
+                <h2 className="text-sm font-semibold text-white">{title}</h2>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600"
+                  className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-white"
                   aria-label="Close panel"
                 >
                   <X className="h-4 w-4" />

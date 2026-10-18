@@ -23,18 +23,7 @@ export function NotificationsPage() {
 
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['notifications', filter, page],
-    queryFn: async () => {
-      const res = await import('@/services/api').then((m) =>
-        m.api.get('/notifications', {
-          params: { page, limit: 15, unread: filter === 'unread' ? 'true' : undefined },
-        })
-      );
-      return {
-        items: res.data.data.items as NotificationDto[],
-        unreadCount: res.data.data.unreadCount as number,
-        meta: res.data.meta,
-      };
-    },
+    queryFn: () => endpoints.notifications.list({ page, limit: 15, unread: filter === 'unread' ? 'true' : undefined }),
     placeholderData: (prev) => prev,
   });
 
@@ -53,7 +42,7 @@ export function NotificationsPage() {
   });
 
   const items = data?.items ?? [];
-  const meta = data?.meta;
+  const unreadCount = data?.unreadCount ?? 0;
 
   return (
     <div>
@@ -61,7 +50,7 @@ export function NotificationsPage() {
         title="Notifications"
         description="Moderation decisions, rewards, ratings, and platform updates."
         actions={
-          (data?.unreadCount ?? 0) > 0 ? (
+          unreadCount > 0 ? (
             <Button variant="outline" size="sm" onClick={() => markAll.mutate()} loading={markAll.isPending} icon={<CheckCheck className="h-4 w-4" />}>
               Mark all read
             </Button>
@@ -73,7 +62,7 @@ export function NotificationsPage() {
         <SegmentedControl
           options={[
             { value: 'all' as const, label: 'All' },
-            { value: 'unread' as const, label: `Unread${data?.unreadCount ? ` (${data.unreadCount})` : ''}` },
+            { value: 'unread' as const, label: `Unread${unreadCount ? ` (${unreadCount})` : ''}` },
           ]}
           value={filter}
           onChange={(v) => {
@@ -147,11 +136,6 @@ export function NotificationsPage() {
               </div>
             ))}
           </div>
-          {meta && (
-            <div className="mt-6">
-              <Pagination page={meta.page} totalPages={meta.totalPages} total={meta.total} onPage={setPage} />
-            </div>
-          )}
         </>
       )}
     </div>

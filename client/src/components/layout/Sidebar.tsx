@@ -34,20 +34,20 @@ export function Sidebar({ collapsed, onToggle, mobile = false, onNavigate }: Sid
       animate={{ opacity: 1 }}
       transition={{ duration: 0.18 }}
       className={cn(
-        'flex h-full flex-col border-r border-zinc-200/80 bg-white',
+        'flex h-full flex-col border-r border-gray-200 bg-slate-900',
         mobile ? 'w-full' : width,
         !mobile && 'transition-[width] duration-200 ease-out'
       )}
       aria-label="Main navigation"
     >
       {/* Brand */}
-      <div className={cn('flex items-center gap-2.5 border-b border-zinc-100', isCollapsed ? 'justify-center px-3' : 'px-4', 'py-4')}>
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">
+      <div className={cn('flex items-center gap-2.5 border-b border-slate-700', isCollapsed ? 'justify-center px-3' : 'px-4', 'py-4')}>
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-sm font-bold text-white">
           Q
         </div>
         {!isCollapsed && (
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-zinc-900">QuizSphere</p>
+            <p className="truncate text-sm font-semibold text-white">QuizSphere</p>
             {user?.role === 'ADMIN' && (
               <Badge tone="brand" className="mt-0.5">
                 <ShieldCheck className="h-3 w-3" /> Admin
@@ -72,7 +72,7 @@ export function Sidebar({ collapsed, onToggle, mobile = false, onNavigate }: Sid
         {sections.map((section) => (
           <div key={section.title} className="mb-3">
             {!isCollapsed && (
-              <p className="mb-1 px-4 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+              <p className="mb-1 px-4 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
                 {section.title}
               </p>
             )}
@@ -95,18 +95,18 @@ export function Sidebar({ collapsed, onToggle, mobile = false, onNavigate }: Sid
                       onClick={onNavigate}
                       title={isCollapsed ? item.label : undefined}
                       className={cn(
-                        'group flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors',
+                        'group flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium transition-all duration-200',
                         isCollapsed && 'justify-center px-0',
                         active
-                          ? 'bg-brand-50 text-brand-700'
-                          : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
+                          ? 'bg-slate-800 text-white'
+                          : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                       )}
                       aria-current={active ? 'page' : undefined}
                     >
                       <Icon
                         className={cn(
-                          'h-[18px] w-[18px] shrink-0',
-                          active ? 'text-brand-600' : 'text-zinc-400 group-hover:text-zinc-600'
+                          'h-[18px] w-[18px] shrink-0 transition-colors',
+                          active ? 'text-brand-400' : 'text-slate-400 group-hover:text-brand-400'
                         )}
                       />
                       {!isCollapsed && <span className="truncate">{item.label}</span>}
@@ -121,12 +121,12 @@ export function Sidebar({ collapsed, onToggle, mobile = false, onNavigate }: Sid
 
       {/* Collapse control (desktop only) */}
       {!mobile && (
-        <div className="border-t border-zinc-100 p-2">
+        <div className="border-t border-slate-700 p-2">
           <button
             type="button"
             onClick={onToggle}
             className={cn(
-              'flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-zinc-500 hover:bg-zinc-50 hover:text-zinc-800',
+              'flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white',
               isCollapsed && 'justify-center px-0'
             )}
             aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
@@ -139,9 +139,9 @@ export function Sidebar({ collapsed, onToggle, mobile = false, onNavigate }: Sid
 
       {/* User card */}
       {user && !isCollapsed && (
-        <div className="border-t border-zinc-100 px-4 py-3">
-          <p className="truncate text-sm font-medium text-zinc-900">{user.name}</p>
-          <p className="truncate text-xs text-zinc-500">{user.email}</p>
+        <div className="border-t border-slate-700 px-4 py-3">
+          <p className="truncate text-sm font-medium text-white">{user.name}</p>
+          <p className="truncate text-xs text-slate-400">{user.email}</p>
         </div>
       )}
     </motion.aside>

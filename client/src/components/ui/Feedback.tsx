@@ -17,7 +17,7 @@ export function Card({
     <motion.div
       whileHover={hover && !reduceMotion ? { y: -2 } : undefined}
       transition={{ duration: 0.15 }}
-      className={cn('surface', hover && 'transition-shadow hover:shadow-pop', className)}
+      className={cn('surface', hover && 'transition-shadow hover:shadow-md', className)}
     >
       {children}
     </motion.div>
@@ -36,7 +36,7 @@ export function CardHeader({
   className?: string;
 }) {
   return (
-    <div className={cn('flex flex-wrap items-start justify-between gap-3 border-b border-zinc-100 px-5 py-4', className)}>
+    <div className={cn('flex flex-wrap items-start justify-between gap-3 border-b border-gray-200 px-5 py-4', className)}>
       <div>
         <h3 className="text-base font-semibold text-zinc-900">{title}</h3>
         {subtitle && <p className="mt-0.5 text-sm text-zinc-500">{subtitle}</p>}

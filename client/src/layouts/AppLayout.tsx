@@ -37,7 +37,7 @@ export function AppLayout() {
   }
 
   return (
-    <div className="flex min-h-screen bg-zinc-50">
+    <div className="flex min-h-screen bg-gray-50">
       {isDesktop ? (
         <div className="sticky top-0 h-screen shrink-0">
           <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((v) => !v)} />
@@ -59,7 +59,7 @@ export function AppLayout() {
         >
           <Outlet />
         </motion.main>
-        <footer className="border-t border-zinc-200/80 px-6 py-4 text-center text-xs text-zinc-400">
+        <footer className="border-t border-sky-100 px-6 py-4 text-center text-xs text-zinc-400">
           QuizSphere — internal QCoins have no cash value.
         </footer>
       </div>

@@ -48,21 +48,18 @@ export function PollBuilderPage() {
 
   const detailQuery = useQuery({
     queryKey: ['poll-admin', id],
-    queryFn: async () => {
-      const res = await import('@/services/api').then((m) => m.api.get(`/polls/${id}`));
-      return res.data.data as { poll: PollAdminDto };
-    },
+    queryFn: () => endpoints.polls.get(id!),
     enabled: isEdit,
   });
 
   useEffect(() => {
-    const poll = detailQuery.data?.poll;
+    const poll = detailQuery.data?.poll as PollAdminDto | undefined;
     if (!poll) return;
     setTitle(poll.title ?? '');
     setQuestion(poll.question ?? '');
     setDescription(poll.description ?? '');
     setVotingType((poll.votingType as 'SINGLE' | 'MULTIPLE') ?? 'SINGLE');
-    setOptions((poll.options ?? []).map((o) => ({ id: o.id, text: o.text })));
+    setOptions((poll.options ?? []).map((o: { id: string; text: string }) => ({ id: o.id, text: o.text })));
     setStartsAt(toLocalInput(poll.startsAt));
     setEndsAt(toLocalInput(poll.endsAt));
     setAnonymous(Boolean(poll.anonymous));
@@ -72,7 +69,7 @@ export function PollBuilderPage() {
     setRewardMode(poll.rewardMode ?? 'ALL_PARTICIPANTS');
     setMaxRewardRecipients(poll.maxRewardRecipients ?? 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [detailQuery.data]);
+  }, [detailQuery.data?.poll]);
 
   const buildPayload = () => ({
     title,

@@ -407,10 +407,10 @@ export function QuizBuilderPage() {
                   e.target.value = '';
                 }
               }}
-              className="w-52"
+              className="w-56"
               aria-label="Add question"
             >
-              <option value="">+ Add question…</option>
+              <option value="">+ Add question type…</option>
               {Object.entries(QUESTION_TYPE_LABELS).map(([value, label]) => (
                 <option key={value} value={value}>
                   {label}
@@ -519,7 +519,7 @@ export function QuizBuilderPage() {
         onClose={() => setPreviewOpen(false)}
         title="Quiz preview"
         description="How participants will see the questions."
-        size="lg"
+        size="xl"
       >
         <div className="space-y-4">
           <div>
@@ -602,7 +602,7 @@ function QuestionEditor({
     const options = question.options ?? [];
     const single = type === QUESTION_TYPES.SINGLE_CHOICE;
     return (
-      <div>
+      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
         <p className="field-label">Options {single ? '(select the correct one)' : '(select all correct)'}</p>
         <div className="space-y-2">
           {options.map((option, i) => (
@@ -621,7 +621,7 @@ function QuestionEditor({
                   );
                   onChange({ options: next });
                 }}
-                className={single ? 'h-4 w-4 border-zinc-300 text-brand-600' : 'h-4 w-4 rounded border-zinc-300 text-brand-600'}
+                className={single ? 'h-4 w-4 border-gray-300 text-brand-600' : 'h-4 w-4 rounded border-gray-300 text-brand-600'}
                 aria-label={`Mark option ${i + 1} correct`}
               />
               <input
@@ -638,7 +638,7 @@ function QuestionEditor({
               <button
                 type="button"
                 onClick={() => onChange({ options: options.filter((_, j) => j !== i) })}
-                className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                className="rounded p-1.5 text-zinc-400 hover:bg-red-50 hover:text-red-500 transition-colors"
                 aria-label="Remove option"
               >
                 <X className="h-4 w-4" />
@@ -649,7 +649,7 @@ function QuestionEditor({
         <Button
           variant="ghost"
           size="sm"
-          className="mt-2"
+          className="mt-3 border border-gray-300 text-brand-600 hover:bg-gray-100"
           onClick={() =>
             onChange({
               options: [...options, { id: `o${options.length + 1}_${Date.now().toString(36)}`, text: '', isCorrect: false }],
@@ -665,21 +665,42 @@ function QuestionEditor({
 
   if (type === QUESTION_TYPES.TRUE_FALSE) {
     return (
-      <Select
-        label="Correct answer"
-        value={String(question.correctBoolean ?? true)}
-        onChange={(e) => onChange({ correctBoolean: e.target.value === 'true' })}
-      >
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </Select>
+      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <p className="field-label">Correct answer</p>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => onChange({ correctBoolean: true })}
+            className={cn(
+              'flex-1 rounded-lg border px-4 py-3 text-sm font-medium transition-all duration-200',
+              question.correctBoolean === true
+                ? 'border-brand-500 bg-brand-50 text-brand-700'
+                : 'border-gray-300 bg-white text-zinc-600 hover:border-brand-300 hover:bg-gray-100'
+            )}
+          >
+            True
+          </button>
+          <button
+            type="button"
+            onClick={() => onChange({ correctBoolean: false })}
+            className={cn(
+              'flex-1 rounded-lg border px-4 py-3 text-sm font-medium transition-all duration-200',
+              question.correctBoolean === false
+                ? 'border-brand-500 bg-brand-50 text-brand-700'
+                : 'border-gray-300 bg-white text-zinc-600 hover:border-brand-300 hover:bg-gray-100'
+            )}
+          >
+            False
+          </button>
+        </div>
+      </div>
     );
   }
 
   if (type === QUESTION_TYPES.FILL_BLANK) {
     const answers = question.correctAnswers ?? [];
     return (
-      <div>
+      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
         <p className="field-label">Accepted answers (any match is correct)</p>
         <div className="space-y-2">
           {answers.map((answer, i) => (
@@ -698,7 +719,7 @@ function QuestionEditor({
               <button
                 type="button"
                 onClick={() => onChange({ correctAnswers: answers.filter((_, j) => j !== i) })}
-                className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                className="rounded p-1.5 text-zinc-400 hover:bg-red-50 hover:text-red-500 transition-colors"
                 aria-label="Remove answer"
               >
                 <X className="h-4 w-4" />
@@ -709,13 +730,13 @@ function QuestionEditor({
         <Button
           variant="ghost"
           size="sm"
-          className="mt-2"
+          className="mt-3 border border-gray-300 text-brand-600 hover:bg-gray-100"
           onClick={() => onChange({ correctAnswers: [...answers, ''] })}
           icon={<Plus className="h-4 w-4" />}
         >
           Add accepted answer
         </Button>
-        <div className="mt-2">
+        <div className="mt-3">
           <Checkbox
             label="Case sensitive"
             checked={Boolean(question.evaluationRules?.caseSensitive)}
@@ -756,7 +777,7 @@ function QuestionEditor({
           onChange={(next) => onChange({ evaluationRules: { ...rules, mode: next ? 'MANUAL' : 'KEYWORDS' } })}
         />
         {!manual && (
-          <>
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
             <p className="field-label">
               Keyword rules — answers matching enough weighted keywords pass automatically
             </p>
@@ -792,7 +813,7 @@ function QuestionEditor({
                     onClick={() =>
                       onChange({ evaluationRules: { ...rules, keywords: (rules.keywords ?? []).filter((_, j) => j !== i) } })
                     }
-                    className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-red-500"
+                    className="rounded p-1.5 text-zinc-400 hover:bg-red-50 hover:text-red-500 transition-colors"
                     aria-label="Remove keyword"
                   >
                     <X className="h-4 w-4" />
@@ -803,6 +824,7 @@ function QuestionEditor({
             <Button
               variant="ghost"
               size="sm"
+              className="mt-3 border border-gray-300 text-brand-600 hover:bg-gray-100"
               onClick={() =>
                 onChange({
                   evaluationRules: { ...rules, keywords: [...(rules.keywords ?? []), { text: '', weight: 1 }] },
@@ -812,7 +834,7 @@ function QuestionEditor({
             >
               Add keyword
             </Button>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 mt-3">
               <Input
                 label="Min keyword matches"
                 type="number"
@@ -831,7 +853,7 @@ function QuestionEditor({
                 hint="Fraction of total keyword weight required to pass."
               />
             </div>
-          </>
+          </div>
         )}
       </div>
     );

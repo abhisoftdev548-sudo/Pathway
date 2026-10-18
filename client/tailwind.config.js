@@ -21,8 +21,8 @@ export default {
         },
       },
       boxShadow: {
-        card: '0 1px 2px 0 rgb(24 24 27 / 0.04), 0 1px 3px 0 rgb(24 24 27 / 0.06)',
-        pop: '0 8px 24px -6px rgb(24 24 27 / 0.12), 0 2px 8px -2px rgb(24 24 27 / 0.08)',
+        card: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+        pop: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
       },
       keyframes: {
         shimmer: {
